@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans, Nunito_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ 
+const plusJakarta = Plus_Jakarta_Sans({ 
   subsets: ["latin"],
-  variable: "--font-inter"
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700", "800"]
+});
+
+const nunitoSans = Nunito_Sans({ 
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -15,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#E53935',
+  themeColor: '#2874F0',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -28,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased bg-white`}>
+      <body className={`${plusJakarta.variable} ${nunitoSans.variable} font-sans antialiased bg-[#F1F3F6]`}>
         {children}
         <Analytics />
       </body>

@@ -106,22 +106,22 @@ export default function ShopProfilePage() {
   const [activeTab, setActiveTab] = useState("products")
 
   return (
-    <div className="min-h-screen bg-white pb-20">
+    <div className="min-h-screen bg-[#F1F3F6] pb-20">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/home" className="p-1">
-            <ArrowLeft className="w-6 h-6 text-foreground" />
+            <ArrowLeft className="w-6 h-6 text-[#212121]" />
           </Link>
           <button>
-            <Share2 className="w-5 h-5 text-foreground" />
+            <Share2 className="w-5 h-5 text-[#212121]" />
           </button>
         </div>
       </header>
 
       {/* Cover & Logo */}
       <div className="relative">
-        <div className="h-36 bg-gradient-to-r from-primary/20 to-primary/5">
+        <div className="h-36 bg-gradient-to-r from-[#2874F0]/20 to-[#2874F0]/5">
           <img 
             src={shopData.coverImage} 
             alt="Shop Cover"
@@ -140,37 +140,37 @@ export default function ShopProfilePage() {
       </div>
 
       {/* Shop Info */}
-      <div className="px-4 pt-14 pb-4 border-b border-border">
+      <div className="px-4 pt-14 pb-4 bg-white mt-2">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-semibold text-foreground">{shopData.name}</h1>
-              <BadgeCheck className="w-5 h-5 text-primary" />
+              <h1 className="text-xl font-semibold text-[#212121] font-[family-name:var(--font-heading)]">{shopData.name}</h1>
+              <BadgeCheck className="w-5 h-5 text-[#2874F0]" />
             </div>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
+            <div className="flex items-center gap-1 text-sm text-[#878787] mt-1">
               <MapPin className="w-4 h-4" />
               <span className="line-clamp-1">{shopData.address}</span>
             </div>
           </div>
-          <Badge className="bg-primary/10 text-primary border-0">
+          <Badge className="bg-[#2874F0]/10 text-[#2874F0] border-0">
             {shopData.yearsInBusiness} Years
           </Badge>
         </div>
 
         <div className="flex items-center gap-4 mt-3">
           <div className="flex items-center gap-1">
-            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-            <span className="font-medium text-foreground">{shopData.rating}</span>
-            <span className="text-sm text-muted-foreground">({shopData.reviewCount})</span>
+            <Star className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
+            <span className="font-medium text-[#212121]">{shopData.rating}</span>
+            <span className="text-sm text-[#878787]">({shopData.reviewCount})</span>
           </div>
           <div className="flex items-center gap-1 text-sm">
-            <Clock className="w-4 h-4 text-muted-foreground" />
+            <Clock className="w-4 h-4 text-[#878787]" />
             {shopData.isOpen ? (
-              <span className="text-green-600 font-medium">Open</span>
+              <span className="text-[#388E3C] font-medium">Open</span>
             ) : (
-              <span className="text-red-500 font-medium">Closed</span>
+              <span className="text-[#FF6161] font-medium">Closed</span>
             )}
-            <span className="text-muted-foreground">
+            <span className="text-[#878787]">
               • {shopData.openTime} - {shopData.closeTime}
             </span>
           </div>
@@ -178,35 +178,35 @@ export default function ShopProfilePage() {
 
         <div className="flex gap-2 mt-4">
           <Link href={`/chat/${shopData.id}`} className="flex-1">
-            <Button variant="outline" className="w-full border-2 border-primary text-primary hover:bg-primary/5">
+            <Button variant="outline" className="w-full border-2 border-[#2874F0] text-[#2874F0] hover:bg-[#2874F0]/5">
               <MessageCircle className="w-4 h-4 mr-2" />
               Chat
             </Button>
           </Link>
-          <Button variant="outline" className="border-2 border-border">
+          <Button variant="outline" className="border-2 border-[#E0E0E0]">
             <Phone className="w-4 h-4" />
           </Button>
         </div>
       </div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="w-full grid grid-cols-3 bg-white border-b border-border rounded-none h-12">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-2">
+        <TabsList className="w-full grid grid-cols-3 bg-white border-b border-[#E0E0E0] rounded-none h-12">
           <TabsTrigger 
             value="products" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-[#2874F0] data-[state=active]:text-[#2874F0] data-[state=active]:bg-transparent"
           >
             Products
           </TabsTrigger>
           <TabsTrigger 
             value="reviews"
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-[#2874F0] data-[state=active]:text-[#2874F0] data-[state=active]:bg-transparent"
           >
             Reviews
           </TabsTrigger>
           <TabsTrigger 
             value="about"
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-[#2874F0] data-[state=active]:text-[#2874F0] data-[state=active]:bg-transparent"
           >
             About
           </TabsTrigger>
@@ -216,9 +216,9 @@ export default function ShopProfilePage() {
           <div className="grid grid-cols-2 gap-3">
             {shopProducts.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
-                <Card className="border shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow overflow-hidden bg-white">
                   <CardContent className="p-0">
-                    <div className="aspect-square bg-secondary/30 flex items-center justify-center p-3">
+                    <div className="aspect-square bg-white flex items-center justify-center p-3">
                       <img 
                         src={product.image} 
                         alt={product.name}
@@ -226,16 +226,16 @@ export default function ShopProfilePage() {
                       />
                     </div>
                     <div className="p-3">
-                      <h3 className="text-sm font-medium text-foreground line-clamp-2 mb-1">
+                      <h3 className="text-sm font-medium text-[#212121] line-clamp-2 mb-1">
                         {product.name}
                       </h3>
-                      <p className="text-primary font-bold">
+                      <p className="text-[#212121] font-bold font-[family-name:var(--font-heading)]">
                         ₹{product.price.toLocaleString()}
                       </p>
                       <Button 
                         size="sm"
                         variant="outline"
-                        className="w-full mt-2 border-primary text-primary hover:bg-primary/5 text-xs h-8"
+                        className="w-full mt-2 border-[#2874F0] text-[#2874F0] hover:bg-[#2874F0]/5 text-xs h-8"
                       >
                         Add to Cart
                       </Button>
@@ -250,11 +250,11 @@ export default function ShopProfilePage() {
         <TabsContent value="reviews" className="px-4 py-4 mt-0">
           <div className="space-y-4">
             {shopReviews.map((review) => (
-              <Card key={review.id} className="border shadow-sm">
+              <Card key={review.id} className="border-0 shadow-sm bg-white">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <h4 className="font-medium text-foreground">{review.name}</h4>
+                      <h4 className="font-medium text-[#212121]">{review.name}</h4>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
@@ -262,20 +262,20 @@ export default function ShopProfilePage() {
                               key={i}
                               className={`w-3 h-3 ${
                                 i < review.rating 
-                                  ? "fill-yellow-400 text-yellow-400" 
-                                  : "text-border"
+                                  ? "fill-[#FFD700] text-[#FFD700]" 
+                                  : "text-[#E0E0E0]"
                               }`}
                             />
                           ))}
                         </div>
-                        <span className="text-xs text-muted-foreground">{review.date}</span>
+                        <span className="text-xs text-[#878787]">{review.date}</span>
                       </div>
                     </div>
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge className="bg-[#F1F3F6] text-[#212121] text-xs border-0">
                       {review.serviceBadge}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{review.comment}</p>
+                  <p className="text-sm text-[#878787]">{review.comment}</p>
                 </CardContent>
               </Card>
             ))}
@@ -285,13 +285,13 @@ export default function ShopProfilePage() {
         <TabsContent value="about" className="px-4 py-4 mt-0">
           {/* Brands */}
           <div className="mb-6">
-            <h3 className="font-semibold text-foreground mb-3">Brands We Carry</h3>
+            <h3 className="font-semibold text-[#212121] mb-3 font-[family-name:var(--font-heading)]">Brands We Carry</h3>
             <div className="flex flex-wrap gap-2">
               {shopData.brands.map((brand) => (
                 <Badge 
                   key={brand} 
                   variant="outline" 
-                  className="border-primary/30 text-foreground"
+                  className="border-[#2874F0]/30 text-[#212121]"
                 >
                   {brand}
                 </Badge>
@@ -301,19 +301,19 @@ export default function ShopProfilePage() {
 
           {/* Services */}
           <div className="mb-6">
-            <h3 className="font-semibold text-foreground mb-3">Services Offered</h3>
+            <h3 className="font-semibold text-[#212121] mb-3 font-[family-name:var(--font-heading)]">Services Offered</h3>
             <div className="grid grid-cols-2 gap-3">
               {shopData.services.map((service) => (
                 <div 
                   key={service}
-                  className="flex items-center gap-2 p-3 border-2 border-primary/20 rounded-lg"
+                  className="flex items-center gap-2 p-3 bg-white rounded-sm shadow-sm"
                 >
                   {service === "Repair" ? (
-                    <Wrench className="w-4 h-4 text-primary" />
+                    <Wrench className="w-4 h-4 text-[#2874F0]" />
                   ) : (
-                    <Package className="w-4 h-4 text-primary" />
+                    <Package className="w-4 h-4 text-[#2874F0]" />
                   )}
-                  <span className="text-sm text-foreground">{service}</span>
+                  <span className="text-sm text-[#212121]">{service}</span>
                 </div>
               ))}
             </div>
@@ -321,18 +321,18 @@ export default function ShopProfilePage() {
 
           {/* Working Hours */}
           <div className="mb-6">
-            <h3 className="font-semibold text-foreground mb-3">Working Hours</h3>
-            <Card className="border">
+            <h3 className="font-semibold text-[#212121] mb-3 font-[family-name:var(--font-heading)]">Working Hours</h3>
+            <Card className="border-0 shadow-sm bg-white">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Monday - Saturday</span>
-                  <span className="font-medium text-foreground">
+                  <span className="text-[#878787]">Monday - Saturday</span>
+                  <span className="font-medium text-[#212121]">
                     {shopData.openTime} - {shopData.closeTime}
                   </span>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-muted-foreground">Sunday</span>
-                  <span className="font-medium text-foreground">11:00 AM - 7:00 PM</span>
+                  <span className="text-[#878787]">Sunday</span>
+                  <span className="font-medium text-[#212121]">11:00 AM - 7:00 PM</span>
                 </div>
               </CardContent>
             </Card>
@@ -340,11 +340,11 @@ export default function ShopProfilePage() {
 
           {/* Map Placeholder */}
           <div className="mb-6">
-            <h3 className="font-semibold text-foreground mb-3">Location</h3>
-            <div className="h-40 bg-secondary/50 rounded-lg flex items-center justify-center border-2 border-dashed border-border">
+            <h3 className="font-semibold text-[#212121] mb-3 font-[family-name:var(--font-heading)]">Location</h3>
+            <div className="h-40 bg-[#F1F3F6] rounded-sm flex items-center justify-center border-2 border-dashed border-[#E0E0E0]">
               <div className="text-center">
-                <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">Map View</p>
+                <MapPin className="w-8 h-8 text-[#2874F0] mx-auto mb-2" />
+                <p className="text-sm text-[#878787]">Map View</p>
               </div>
             </div>
           </div>
@@ -354,7 +354,7 @@ export default function ShopProfilePage() {
       {/* Floating Chat Button */}
       <Link 
         href={`/chat/${shopData.id}`}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-[#2874F0] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#2874F0]/90 transition-colors z-50"
       >
         <MessageCircle className="w-6 h-6" />
       </Link>

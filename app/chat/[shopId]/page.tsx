@@ -94,42 +94,42 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-[#F1F3F6] flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
             <Link href="/home" className="p-1">
-              <ArrowLeft className="w-6 h-6 text-foreground" />
+              <ArrowLeft className="w-6 h-6 text-[#212121]" />
             </Link>
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                  <Store className="w-5 h-5 text-muted-foreground" />
+                <div className="w-10 h-10 rounded-full bg-[#F1F3F6] flex items-center justify-center">
+                  <Store className="w-5 h-5 text-[#878787]" />
                 </div>
-                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#388E3C] rounded-full border-2 border-white" />
               </div>
               <div>
-                <h1 className="font-semibold text-foreground text-sm">Tech World Electronics</h1>
-                <p className="text-xs text-green-600">Online</p>
+                <h1 className="font-semibold text-[#212121] text-sm">Tech World Electronics</h1>
+                <p className="text-xs text-[#388E3C]">Online</p>
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Link href="/shop/1">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/5 text-xs">
+              <Button variant="outline" size="sm" className="border-[#2874F0] text-[#2874F0] hover:bg-[#2874F0]/5 text-xs">
                 View Shop
               </Button>
             </Link>
             <button className="p-2">
-              <MoreVertical className="w-5 h-5 text-foreground" />
+              <MoreVertical className="w-5 h-5 text-[#212121]" />
             </button>
           </div>
         </div>
       </header>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 bg-secondary/20">
+      <div className="flex-1 overflow-y-auto px-4 py-4">
         <div className="space-y-4">
           {messages.map((message) => (
             <div
@@ -137,15 +137,15 @@ export default function ChatPage() {
               className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
+                className={`max-w-[80%] rounded-lg px-4 py-2.5 ${
                   message.sender === "user"
-                    ? "bg-primary/10 text-foreground rounded-br-md"
-                    : "bg-white text-foreground shadow-sm rounded-bl-md"
+                    ? "bg-[#E3F2FD] text-[#212121] rounded-br-none"
+                    : "bg-white text-[#212121] shadow-sm rounded-bl-none"
                 }`}
               >
                 <p className="text-sm">{message.text}</p>
                 <p className={`text-[10px] mt-1 ${
-                  message.sender === "user" ? "text-primary/70" : "text-muted-foreground"
+                  message.sender === "user" ? "text-[#2874F0]/70" : "text-[#878787]"
                 }`}>
                   {message.timestamp}
                 </p>
@@ -156,11 +156,11 @@ export default function ChatPage() {
           {/* Typing Indicator */}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
+              <div className="bg-white rounded-lg rounded-bl-none px-4 py-3 shadow-sm">
                 <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="w-2 h-2 bg-[#878787]/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-2 h-2 bg-[#878787]/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-2 h-2 bg-[#878787]/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
               </div>
             </div>
@@ -171,13 +171,13 @@ export default function ChatPage() {
       </div>
 
       {/* Quick Replies */}
-      <div className="px-4 py-2 bg-white border-t border-border overflow-x-auto">
+      <div className="px-4 py-2 bg-white border-t border-[#E0E0E0] overflow-x-auto">
         <div className="flex gap-2">
           {quickReplies.map((reply) => (
             <button
               key={reply}
               onClick={() => handleSendMessage(reply)}
-              className="px-3 py-1.5 text-xs border-2 border-primary/30 rounded-full text-primary hover:bg-primary/5 whitespace-nowrap transition-colors"
+              className="px-3 py-1.5 text-xs border border-[#2874F0]/30 rounded-full text-[#2874F0] hover:bg-[#2874F0]/5 whitespace-nowrap transition-colors"
             >
               {reply}
             </button>
@@ -186,12 +186,12 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area */}
-      <form onSubmit={handleSubmit} className="px-4 py-3 bg-white border-t border-border">
+      <form onSubmit={handleSubmit} className="px-4 py-3 bg-white border-t border-[#E0E0E0]">
         <div className="flex items-center gap-2">
-          <button type="button" className="p-2 text-muted-foreground hover:text-foreground">
+          <button type="button" className="p-2 text-[#878787] hover:text-[#212121]">
             <Paperclip className="w-5 h-5" />
           </button>
-          <button type="button" className="p-2 text-muted-foreground hover:text-foreground">
+          <button type="button" className="p-2 text-[#878787] hover:text-[#212121]">
             <ImageIcon className="w-5 h-5" />
           </button>
           <input
@@ -199,12 +199,12 @@ export default function ChatPage() {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 px-4 py-2 bg-secondary/50 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="flex-1 px-4 py-2 bg-[#F1F3F6] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#2874F0]/30"
           />
           <button 
             type="submit"
             disabled={!newMessage.trim()}
-            className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-10 h-10 bg-[#2874F0] text-white rounded-full flex items-center justify-center hover:bg-[#2874F0]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-5 h-5" />
           </button>

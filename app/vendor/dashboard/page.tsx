@@ -95,19 +95,19 @@ export default function VendorDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-secondary/30">
+    <div className="min-h-screen bg-[#F1F3F6]">
       {/* Mobile Header */}
-      <header className="lg:hidden sticky top-0 z-50 bg-white border-b border-border">
+      <header className="lg:hidden sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <button onClick={() => setSidebarOpen(true)}>
-            <Menu className="w-6 h-6 text-foreground" />
+            <Menu className="w-6 h-6 text-[#212121]" />
           </button>
-          <h1 className="text-lg font-bold text-foreground">
-            Sales<span className="text-primary">App</span>
+          <h1 className="text-lg font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+            Sales<span className="text-[#2874F0]">App</span>
           </h1>
           <button className="relative">
-            <Bell className="w-6 h-6 text-foreground" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-primary text-white text-xs rounded-full flex items-center justify-center">
+            <Bell className="w-6 h-6 text-[#212121]" />
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#2874F0] text-white text-xs rounded-full flex items-center justify-center">
               3
             </span>
           </button>
@@ -124,30 +124,30 @@ export default function VendorDashboardPage() {
 
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 h-full w-64 bg-white border-r border-border z-50 transform transition-transform duration-300
+        fixed top-0 left-0 h-full w-64 bg-[#2874F0] z-50 transform transition-transform duration-300
         lg:translate-x-0
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}>
-        <div className="p-4 border-b border-border flex items-center justify-between">
-          <h1 className="text-xl font-bold text-foreground">
-            Sales<span className="text-primary">App</span>
+        <div className="p-4 border-b border-white/20 flex items-center justify-between">
+          <h1 className="text-xl font-bold text-white font-[family-name:var(--font-heading)]">
+            Sales<span className="text-[#FFD700]">App</span>
           </h1>
           <button 
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden"
+            className="lg:hidden text-white"
           >
-            <X className="w-5 h-5 text-foreground" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-4">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-primary font-bold text-lg">TW</span>
+            <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-lg">TW</span>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">Tech World</h3>
-              <p className="text-xs text-muted-foreground">Shop Owner</p>
+              <h3 className="font-semibold text-white">Tech World</h3>
+              <p className="text-xs text-white/70">Shop Owner</p>
             </div>
           </div>
 
@@ -156,10 +156,10 @@ export default function VendorDashboardPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-sm transition-colors ${
                   item.active 
-                    ? "bg-primary/10 text-primary border-l-4 border-primary" 
-                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    ? "bg-white/20 text-white" 
+                    : "text-white/70 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 <item.icon className="w-5 h-5" />
@@ -175,10 +175,10 @@ export default function VendorDashboardPage() {
         <div className="p-4 lg:p-6">
           {/* Greeting */}
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 className="text-2xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">
               Good Morning, Tech World!
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-[#878787]">
               Here&apos;s what&apos;s happening with your shop today.
             </p>
           </div>
@@ -186,16 +186,16 @@ export default function VendorDashboardPage() {
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {dashboardStats.map((stat) => (
-              <Card key={stat.label} className="border-2 border-primary/20 shadow-sm">
+              <Card key={stat.label} className="border-0 shadow-sm bg-white">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
-                      <p className="text-2xl font-bold text-primary mt-1">{stat.value}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{stat.trend}</p>
+                      <p className="text-sm text-[#878787]">{stat.label}</p>
+                      <p className="text-2xl font-bold text-[#212121] mt-1 font-[family-name:var(--font-heading)]">{stat.value}</p>
+                      <p className="text-xs text-[#878787] mt-1">{stat.trend}</p>
                     </div>
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <stat.icon className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-[#2874F0]/10 rounded-sm flex items-center justify-center">
+                      <stat.icon className="w-5 h-5 text-[#2874F0]" />
                     </div>
                   </div>
                 </CardContent>
@@ -206,20 +206,20 @@ export default function VendorDashboardPage() {
           {/* Incoming Orders */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-foreground">Incoming Orders</h3>
-              <Link href="/vendor/orders" className="text-primary text-sm font-medium flex items-center">
+              <h3 className="text-lg font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Incoming Orders</h3>
+              <Link href="/vendor/orders" className="text-[#2874F0] text-sm font-medium flex items-center">
                 View All <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
 
             {orders.length === 0 ? (
-              <Card className="border shadow-sm">
+              <Card className="border-0 shadow-sm bg-white">
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <ShoppingBag className="w-8 h-8 text-muted-foreground" />
+                  <div className="w-16 h-16 bg-[#F1F3F6] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <ShoppingBag className="w-8 h-8 text-[#878787]" />
                   </div>
-                  <h4 className="font-medium text-foreground mb-1">No pending orders</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-medium text-[#212121] mb-1">No pending orders</h4>
+                  <p className="text-sm text-[#878787]">
                     All caught up! New orders will appear here.
                   </p>
                 </CardContent>
@@ -227,19 +227,19 @@ export default function VendorDashboardPage() {
             ) : (
               <div className="space-y-3">
                 {orders.map((order) => (
-                  <Card key={order.id} className="border shadow-sm">
+                  <Card key={order.id} className="border-0 shadow-sm bg-white">
                     <CardContent className="p-4">
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="font-medium text-foreground">{order.customer}</span>
-                            <Badge variant="secondary" className="text-[10px]">
+                            <span className="font-medium text-[#212121]">{order.customer}</span>
+                            <Badge className="bg-[#F1F3F6] text-[#878787] text-[10px] border-0">
                               {order.time}
                             </Badge>
                           </div>
-                          <p className="text-sm text-foreground">{order.product}</p>
-                          <p className="text-xs text-muted-foreground mt-1">{order.address}</p>
-                          <p className="text-primary font-bold mt-2">
+                          <p className="text-sm text-[#212121]">{order.product}</p>
+                          <p className="text-xs text-[#878787] mt-1">{order.address}</p>
+                          <p className="text-[#212121] font-bold mt-2 font-[family-name:var(--font-heading)]">
                             ₹{order.amount.toLocaleString()}
                           </p>
                         </div>
@@ -248,7 +248,7 @@ export default function VendorDashboardPage() {
                             onClick={() => handleDeclineOrder(order.id)}
                             variant="outline"
                             size="sm"
-                            className="border-2 border-border text-muted-foreground hover:border-red-500 hover:text-red-500"
+                            className="border-2 border-[#E0E0E0] text-[#878787] hover:border-[#FF6161] hover:text-[#FF6161]"
                           >
                             <XCircle className="w-4 h-4 mr-1" />
                             Decline
@@ -256,7 +256,7 @@ export default function VendorDashboardPage() {
                           <Button
                             onClick={() => handleAcceptOrder(order.id)}
                             size="sm"
-                            className="bg-primary hover:bg-primary/90 text-white"
+                            className="bg-[#2874F0] hover:bg-[#2874F0]/90 text-white"
                           >
                             <Check className="w-4 h-4 mr-1" />
                             Accept
@@ -272,45 +272,45 @@ export default function VendorDashboardPage() {
 
           {/* Quick Actions */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Quick Actions</h3>
+            <h3 className="text-lg font-semibold text-[#212121] mb-4 font-[family-name:var(--font-heading)]">Quick Actions</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Link href="/vendor/products/new">
-                <Card className="border shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white">
                   <CardContent className="p-4 text-center">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Package className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-[#2874F0]/10 rounded-sm flex items-center justify-center mx-auto mb-2">
+                      <Package className="w-5 h-5 text-[#2874F0]" />
                     </div>
-                    <p className="text-sm font-medium text-foreground">Add Product</p>
+                    <p className="text-sm font-medium text-[#212121]">Add Product</p>
                   </CardContent>
                 </Card>
               </Link>
               <Link href="/vendor/orders">
-                <Card className="border shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white">
                   <CardContent className="p-4 text-center">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <ShoppingBag className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-[#2874F0]/10 rounded-sm flex items-center justify-center mx-auto mb-2">
+                      <ShoppingBag className="w-5 h-5 text-[#2874F0]" />
                     </div>
-                    <p className="text-sm font-medium text-foreground">View Orders</p>
+                    <p className="text-sm font-medium text-[#212121]">View Orders</p>
                   </CardContent>
                 </Card>
               </Link>
               <Link href="/vendor/chat">
-                <Card className="border shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white">
                   <CardContent className="p-4 text-center">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <MessageCircle className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-[#2874F0]/10 rounded-sm flex items-center justify-center mx-auto mb-2">
+                      <MessageCircle className="w-5 h-5 text-[#2874F0]" />
                     </div>
-                    <p className="text-sm font-medium text-foreground">Messages</p>
+                    <p className="text-sm font-medium text-[#212121]">Messages</p>
                   </CardContent>
                 </Card>
               </Link>
               <Link href="/vendor/settings">
-                <Card className="border shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-white">
                   <CardContent className="p-4 text-center">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Settings className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-[#2874F0]/10 rounded-sm flex items-center justify-center mx-auto mb-2">
+                      <Settings className="w-5 h-5 text-[#2874F0]" />
                     </div>
-                    <p className="text-sm font-medium text-foreground">Settings</p>
+                    <p className="text-sm font-medium text-[#212121]">Settings</p>
                   </CardContent>
                 </Card>
               </Link>

@@ -60,22 +60,22 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pb-24">
+    <div className="min-h-screen bg-[#F1F3F6] pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center gap-3 px-4 py-3">
           <Link href="/cart" className="p-1">
-            <ArrowLeft className="w-6 h-6 text-foreground" />
+            <ArrowLeft className="w-6 h-6 text-[#212121]" />
           </Link>
-          <h1 className="text-lg font-semibold text-foreground">Checkout</h1>
+          <h1 className="text-lg font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Checkout</h1>
         </div>
       </header>
 
-      <div className="px-4 py-4 space-y-6">
+      <div className="px-4 py-4 space-y-4">
         {/* Delivery Address Section */}
-        <section>
-          <h2 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-primary" />
+        <section className="bg-white rounded-sm shadow-sm p-4">
+          <h2 className="font-semibold text-[#212121] mb-3 flex items-center gap-2 font-[family-name:var(--font-heading)]">
+            <MapPin className="w-5 h-5 text-[#2874F0]" />
             Delivery Address
           </h2>
           
@@ -84,10 +84,10 @@ export default function CheckoutPage() {
               {savedAddresses.map((address) => (
                 <Card 
                   key={address.id}
-                  className={`border-2 cursor-pointer transition-colors ${
+                  className={`border cursor-pointer transition-colors ${
                     selectedAddress === address.id 
-                      ? "border-primary" 
-                      : "border-border hover:border-primary/40"
+                      ? "border-[#2874F0] bg-[#2874F0]/5" 
+                      : "border-[#E0E0E0] hover:border-[#2874F0]/40"
                   }`}
                   onClick={() => setSelectedAddress(address.id)}
                 >
@@ -96,25 +96,25 @@ export default function CheckoutPage() {
                       <RadioGroupItem 
                         value={String(address.id)} 
                         id={`address-${address.id}`}
-                        className="mt-1 border-primary text-primary"
+                        className="mt-1 border-[#2874F0] text-[#2874F0]"
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium text-foreground">{address.name}</span>
-                          <span className="text-xs bg-secondary px-2 py-0.5 rounded text-muted-foreground">
+                          <span className="font-medium text-[#212121]">{address.name}</span>
+                          <span className="text-xs bg-[#F1F3F6] px-2 py-0.5 rounded-sm text-[#878787]">
                             {address.type}
                           </span>
                           {address.isDefault && (
-                            <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded">
+                            <span className="text-xs bg-[#2874F0]/10 text-[#2874F0] px-2 py-0.5 rounded-sm">
                               Default
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-[#878787]">
                           {address.address}
                         </p>
-                        <p className="text-sm text-muted-foreground">{address.city}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{address.phone}</p>
+                        <p className="text-sm text-[#878787]">{address.city}</p>
+                        <p className="text-sm text-[#878787] mt-1">{address.phone}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -123,7 +123,7 @@ export default function CheckoutPage() {
             </div>
           </RadioGroup>
 
-          <button className="flex items-center gap-2 mt-3 text-primary font-medium text-sm">
+          <button className="flex items-center gap-2 mt-3 text-[#2874F0] font-medium text-sm">
             <Plus className="w-4 h-4" />
             Add New Address
           </button>
@@ -135,51 +135,51 @@ export default function CheckoutPage() {
             onClick={() => setShowOrderSummary(!showOrderSummary)}
             className="w-full"
           >
-            <Card className="border-2 border-primary/20">
+            <Card className="border-0 shadow-sm bg-white">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-semibold text-foreground">Order Summary</h3>
-                    <p className="text-sm text-muted-foreground">2 items</p>
+                    <h3 className="font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Order Summary</h3>
+                    <p className="text-sm text-[#878787]">2 items</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-primary">₹{total.toLocaleString()}</span>
+                    <span className="font-bold text-[#212121] font-[family-name:var(--font-heading)]">₹{total.toLocaleString()}</span>
                     {showOrderSummary ? (
-                      <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                      <ChevronUp className="w-5 h-5 text-[#878787]" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                      <ChevronDown className="w-5 h-5 text-[#878787]" />
                     )}
                   </div>
                 </div>
                 
                 {showOrderSummary && (
-                  <div className="mt-4 pt-4 border-t border-border space-y-3">
+                  <div className="mt-4 pt-4 border-t border-[#E0E0E0] space-y-3">
                     <div className="flex gap-3">
-                      <div className="w-12 h-12 bg-secondary/30 rounded flex-shrink-0" />
+                      <div className="w-12 h-12 bg-[#F1F3F6] rounded-sm flex-shrink-0" />
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-foreground line-clamp-1">
+                        <p className="text-sm font-medium text-[#212121] line-clamp-1">
                           Samsung Galaxy S24 Ultra 256GB
                         </p>
-                        <p className="text-xs text-muted-foreground">Qty: 1</p>
+                        <p className="text-xs text-[#878787]">Qty: 1</p>
                       </div>
-                      <p className="text-sm font-medium text-foreground">₹124,999</p>
+                      <p className="text-sm font-medium text-[#212121]">₹124,999</p>
                     </div>
                     <div className="flex gap-3">
-                      <div className="w-12 h-12 bg-secondary/30 rounded flex-shrink-0" />
+                      <div className="w-12 h-12 bg-[#F1F3F6] rounded-sm flex-shrink-0" />
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-foreground line-clamp-1">
+                        <p className="text-sm font-medium text-[#212121] line-clamp-1">
                           Sony WH-1000XM5 Headphones
                         </p>
-                        <p className="text-xs text-muted-foreground">Qty: 1</p>
+                        <p className="text-xs text-[#878787]">Qty: 1</p>
                       </div>
-                      <p className="text-sm font-medium text-foreground">₹29,990</p>
+                      <p className="text-sm font-medium text-[#212121]">₹29,990</p>
                     </div>
-                    <div className="pt-3 border-t border-border space-y-2 text-sm">
-                      <div className="flex justify-between text-muted-foreground">
+                    <div className="pt-3 border-t border-[#E0E0E0] space-y-2 text-sm">
+                      <div className="flex justify-between text-[#878787]">
                         <span>Subtotal</span>
                         <span>₹{subtotal.toLocaleString()}</span>
                       </div>
-                      <div className="flex justify-between text-muted-foreground">
+                      <div className="flex justify-between text-[#878787]">
                         <span>Delivery Fee</span>
                         <span>₹{deliveryFee}</span>
                       </div>
@@ -192,9 +192,9 @@ export default function CheckoutPage() {
         </section>
 
         {/* Payment Method Section */}
-        <section>
-          <h2 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-            <CreditCard className="w-5 h-5 text-primary" />
+        <section className="bg-white rounded-sm shadow-sm p-4">
+          <h2 className="font-semibold text-[#212121] mb-3 flex items-center gap-2 font-[family-name:var(--font-heading)]">
+            <CreditCard className="w-5 h-5 text-[#2874F0]" />
             Payment Method
           </h2>
           
@@ -203,30 +203,30 @@ export default function CheckoutPage() {
               {paymentMethods.map((method) => (
                 <Card 
                   key={method.id}
-                  className={`border-2 cursor-pointer transition-colors ${
+                  className={`border cursor-pointer transition-colors ${
                     selectedPayment === method.id 
-                      ? "border-primary border-l-4" 
-                      : "border-border hover:border-primary/40"
+                      ? "border-[#2874F0] bg-[#2874F0]/5" 
+                      : "border-[#E0E0E0] hover:border-[#2874F0]/40"
                   }`}
                   onClick={() => setSelectedPayment(method.id)}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        selectedPayment === method.id ? "bg-primary/10" : "bg-secondary"
+                      <div className={`w-10 h-10 rounded-sm flex items-center justify-center ${
+                        selectedPayment === method.id ? "bg-[#2874F0]/10" : "bg-[#F1F3F6]"
                       }`}>
                         <method.icon className={`w-5 h-5 ${
-                          selectedPayment === method.id ? "text-primary" : "text-muted-foreground"
+                          selectedPayment === method.id ? "text-[#2874F0]" : "text-[#878787]"
                         }`} />
                       </div>
                       <div className="flex-1">
-                        <p className="font-medium text-foreground">{method.name}</p>
-                        <p className="text-xs text-muted-foreground">{method.description}</p>
+                        <p className="font-medium text-[#212121]">{method.name}</p>
+                        <p className="text-xs text-[#878787]">{method.description}</p>
                       </div>
                       <RadioGroupItem 
                         value={method.id} 
                         id={`payment-${method.id}`}
-                        className="border-primary text-primary"
+                        className="border-[#2874F0] text-[#2874F0]"
                       />
                     </div>
                   </CardContent>
@@ -238,20 +238,20 @@ export default function CheckoutPage() {
       </div>
 
       {/* Fixed Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border px-4 py-4 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-4 z-50">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <p className="text-xs text-muted-foreground">Total Amount</p>
-            <p className="text-xl font-bold text-primary">₹{total.toLocaleString()}</p>
+            <p className="text-xs text-[#878787]">Total Amount</p>
+            <p className="text-xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">₹{total.toLocaleString()}</p>
           </div>
-          <div className="flex items-center gap-1 text-xs text-green-600">
+          <div className="flex items-center gap-1 text-xs text-[#388E3C]">
             <Check className="w-4 h-4" />
             <span>Secure Checkout</span>
           </div>
         </div>
         <Button 
           onClick={handlePlaceOrder}
-          className="w-full bg-primary hover:bg-primary/90 text-white font-medium h-12"
+          className="w-full bg-[#2874F0] hover:bg-[#2874F0]/90 text-white font-medium h-12"
         >
           Place Order
         </Button>

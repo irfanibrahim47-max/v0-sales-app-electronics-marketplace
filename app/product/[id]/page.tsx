@@ -113,26 +113,26 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const bestDealShop = shopPrices.find(s => s.price === lowestPrice)
 
   return (
-    <div className="min-h-screen bg-white pb-24">
+    <div className="min-h-screen bg-[#F1F3F6] pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/home" className="p-1">
-            <ArrowLeft className="w-6 h-6 text-foreground" />
+            <ArrowLeft className="w-6 h-6 text-[#212121]" />
           </Link>
           <div className="flex items-center gap-3">
             <button>
-              <Share2 className="w-5 h-5 text-foreground" />
+              <Share2 className="w-5 h-5 text-[#212121]" />
             </button>
             <button onClick={() => setIsWishlisted(!isWishlisted)}>
-              <Heart className={`w-5 h-5 ${isWishlisted ? "fill-primary text-primary" : "text-foreground"}`} />
+              <Heart className={`w-5 h-5 ${isWishlisted ? "fill-[#FF6161] text-[#FF6161]" : "text-[#212121]"}`} />
             </button>
           </div>
         </div>
       </header>
 
       {/* Image Carousel */}
-      <div className="relative bg-secondary/20">
+      <div className="relative bg-white">
         <div className="aspect-square flex items-center justify-center p-8">
           <img 
             src={productImages[currentImage]} 
@@ -146,13 +146,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           onClick={() => setCurrentImage(prev => prev > 0 ? prev - 1 : productImages.length - 1)}
           className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center"
         >
-          <ChevronLeft className="w-5 h-5 text-foreground" />
+          <ChevronLeft className="w-5 h-5 text-[#212121]" />
         </button>
         <button 
           onClick={() => setCurrentImage(prev => prev < productImages.length - 1 ? prev + 1 : 0)}
           className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center"
         >
-          <ChevronRight className="w-5 h-5 text-foreground" />
+          <ChevronRight className="w-5 h-5 text-[#212121]" />
         </button>
 
         {/* Dots */}
@@ -162,7 +162,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               key={idx}
               onClick={() => setCurrentImage(idx)}
               className={`w-2 h-2 rounded-full transition-colors ${
-                idx === currentImage ? "bg-primary" : "bg-foreground/30"
+                idx === currentImage ? "bg-[#2874F0]" : "bg-[#212121]/30"
               }`}
             />
           ))}
@@ -170,11 +170,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Product Info */}
-      <div className="px-4 py-4 border-b border-border">
-        <Badge className="bg-primary/10 text-primary border-0 mb-2">
+      <div className="px-4 py-4 bg-white mt-2">
+        <Badge className="bg-[#2874F0]/10 text-[#2874F0] border-0 mb-2">
           Samsung
         </Badge>
-        <h1 className="text-xl font-semibold text-foreground mb-2">
+        <h1 className="text-xl font-semibold text-[#212121] mb-2 font-[family-name:var(--font-heading)]">
           Samsung Galaxy S24 Ultra 256GB
         </h1>
         
@@ -183,7 +183,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           {productSpecs.map((spec) => (
             <span 
               key={spec}
-              className="text-xs bg-secondary px-2.5 py-1 rounded-full text-muted-foreground"
+              className="text-xs bg-[#F1F3F6] px-2.5 py-1 rounded-sm text-[#878787]"
             >
               {spec}
             </span>
@@ -192,10 +192,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Compare Prices Section */}
-      <div className="px-4 py-4">
+      <div className="px-4 py-4 mt-2">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-foreground">Compare Prices</h2>
-          <span className="text-sm text-muted-foreground">{shopPrices.length} shops</span>
+          <h2 className="text-lg font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Compare Prices</h2>
+          <span className="text-sm text-[#878787]">{shopPrices.length} shops</span>
         </div>
 
         {/* Sort Options */}
@@ -208,10 +208,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <button
               key={option.key}
               onClick={() => setSortBy(option.key)}
-              className={`px-3 py-1.5 text-sm rounded-full border-2 whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 text-sm rounded-sm whitespace-nowrap transition-colors ${
                 sortBy === option.key
-                  ? "border-primary bg-primary/5 text-primary font-medium"
-                  : "border-border text-muted-foreground hover:border-primary/40"
+                  ? "bg-[#2874F0] text-white font-medium"
+                  : "bg-white text-[#878787] hover:bg-[#F1F3F6]"
               }`}
             >
               {option.label}
@@ -224,24 +224,24 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           {sortedShops.map((shop, index) => (
             <Card 
               key={shop.id} 
-              className={`border shadow-sm ${
-                shop.price === lowestPrice ? "border-primary" : ""
+              className={`border-0 shadow-sm bg-white ${
+                shop.price === lowestPrice ? "ring-2 ring-[#FFD700]" : ""
               }`}
             >
               <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-medium text-foreground">{shop.name}</h3>
+                      <h3 className="font-medium text-[#212121]">{shop.name}</h3>
                       {shop.price === lowestPrice && (
-                        <Badge className="bg-primary text-white text-[10px]">
+                        <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0">
                           Best Deal
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <div className="flex items-center gap-2 text-xs text-[#878787] mt-1">
                       <div className="flex items-center gap-0.5">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-[#FFD700] text-[#FFD700]" />
                         <span>{shop.rating}</span>
                       </div>
                       <span>•</span>
@@ -252,7 +252,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-primary">
+                    <p className="text-lg font-bold text-[#212121] font-[family-name:var(--font-heading)]">
                       ₹{shop.price.toLocaleString()}
                     </p>
                   </div>
@@ -260,21 +260,21 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
                 <div className="flex items-center gap-3 mb-3">
                   {shop.inStock ? (
-                    <span className="flex items-center gap-1 text-xs text-green-600">
+                    <span className="flex items-center gap-1 text-xs text-[#388E3C]">
                       <Check className="w-3 h-3" /> In Stock
                     </span>
                   ) : (
-                    <span className="flex items-center gap-1 text-xs text-red-500">
+                    <span className="flex items-center gap-1 text-xs text-[#FF6161]">
                       <Clock className="w-3 h-3" /> Out of Stock
                     </span>
                   )}
                   {shop.delivery && (
-                    <Badge variant="secondary" className="text-[10px] gap-1">
+                    <Badge className="bg-[#F1F3F6] text-[#212121] text-[10px] gap-1 border-0">
                       <Truck className="w-3 h-3" /> {shop.deliveryTime}
                     </Badge>
                   )}
                   {!shop.delivery && shop.inStock && (
-                    <Badge variant="secondary" className="text-[10px] gap-1">
+                    <Badge className="bg-[#F1F3F6] text-[#212121] text-[10px] gap-1 border-0">
                       <Store className="w-3 h-3" /> Pickup Only
                     </Badge>
                   )}
@@ -283,8 +283,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <Button 
                   className={`w-full text-sm ${
                     shop.inStock 
-                      ? "bg-primary hover:bg-primary/90 text-white" 
-                      : "bg-secondary text-muted-foreground cursor-not-allowed"
+                      ? "bg-[#2874F0] hover:bg-[#2874F0]/90 text-white" 
+                      : "bg-[#F1F3F6] text-[#878787] cursor-not-allowed"
                   }`}
                   disabled={!shop.inStock}
                 >
@@ -297,18 +297,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border px-4 py-3 flex items-center justify-between z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-3 flex items-center justify-between z-50">
         <div>
-          <p className="text-xs text-muted-foreground">Lowest Price</p>
+          <p className="text-xs text-[#878787]">Lowest Price</p>
           <div className="flex items-center gap-2">
-            <p className="text-xl font-bold text-primary">
+            <p className="text-xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">
               ₹{lowestPrice.toLocaleString()}
             </p>
-            <Badge className="bg-primary text-white text-[10px]">Best Deal</Badge>
+            <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0">Best Deal</Badge>
           </div>
         </div>
         <Link href={`/checkout?shop=${bestDealShop?.id}&product=${resolvedParams.id}`}>
-          <Button className="bg-primary hover:bg-primary/90 text-white px-6">
+          <Button className="bg-[#2874F0] hover:bg-[#2874F0]/90 text-white px-6">
             Buy Now
           </Button>
         </Link>

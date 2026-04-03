@@ -68,8 +68,8 @@ export default function ReviewPage() {
           <Star 
             className={`${size === "small" ? "w-6 h-6" : "w-8 h-8"} ${
               star <= rating 
-                ? "fill-yellow-400 text-yellow-400" 
-                : "text-border hover:text-yellow-400/50"
+                ? "fill-[#FFD700] text-[#FFD700]" 
+                : "text-[#E0E0E0] hover:text-[#FFD700]/50"
             }`}
           />
         </button>
@@ -78,23 +78,23 @@ export default function ReviewPage() {
   )
 
   return (
-    <div className="min-h-screen bg-white pb-8">
+    <div className="min-h-screen bg-[#F1F3F6] pb-8">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center gap-3 px-4 py-3">
           <Link href="/home" className="p-1">
-            <ArrowLeft className="w-6 h-6 text-foreground" />
+            <ArrowLeft className="w-6 h-6 text-[#212121]" />
           </Link>
-          <h1 className="text-lg font-semibold text-foreground">Write a Review</h1>
+          <h1 className="text-lg font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Write a Review</h1>
         </div>
       </header>
 
-      <div className="px-4 py-4 space-y-6">
+      <div className="px-4 py-4 space-y-4">
         {/* Product Info */}
-        <Card className="border shadow-sm">
+        <Card className="border-0 shadow-sm bg-white">
           <CardContent className="p-4">
             <div className="flex gap-4 items-center">
-              <div className="w-16 h-16 bg-secondary/30 rounded-lg flex-shrink-0 flex items-center justify-center">
+              <div className="w-16 h-16 bg-white rounded-sm flex-shrink-0 flex items-center justify-center">
                 <img 
                   src={orderData.product.image} 
                   alt={orderData.product.name}
@@ -102,10 +102,10 @@ export default function ReviewPage() {
                 />
               </div>
               <div>
-                <h3 className="font-medium text-foreground line-clamp-2">
+                <h3 className="font-medium text-[#212121] line-clamp-2">
                   {orderData.product.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-[#878787] mt-1">
                   from {orderData.shop}
                 </p>
               </div>
@@ -114,19 +114,19 @@ export default function ReviewPage() {
         </Card>
 
         {/* Product Review */}
-        <Card className="border shadow-sm">
+        <Card className="border-0 shadow-sm bg-white">
           <CardContent className="p-4">
-            <h3 className="font-semibold text-foreground mb-4">Product Review</h3>
+            <h3 className="font-semibold text-[#212121] mb-4 font-[family-name:var(--font-heading)]">Product Review</h3>
             
             <div className="text-center mb-4">
-              <p className="text-sm text-muted-foreground mb-2">
+              <p className="text-sm text-[#878787] mb-2">
                 How would you rate this product?
               </p>
               <div className="flex justify-center">
                 <StarRating rating={productRating} setRating={setProductRating} />
               </div>
               {productRating > 0 && (
-                <p className="text-sm text-primary mt-2 font-medium">
+                <p className="text-sm text-[#2874F0] mt-2 font-medium">
                   {productRating === 5 ? "Excellent!" : 
                    productRating === 4 ? "Very Good!" : 
                    productRating === 3 ? "Good" : 
@@ -139,15 +139,15 @@ export default function ReviewPage() {
               placeholder="Share your experience with this product..."
               value={productReview}
               onChange={(e) => setProductReview(e.target.value)}
-              className="min-h-[100px] border-2 focus:border-primary resize-none"
+              className="min-h-[100px] border-2 border-[#E0E0E0] focus:border-[#2874F0] resize-none"
             />
           </CardContent>
         </Card>
 
         {/* Photo Upload */}
-        <Card className="border shadow-sm">
+        <Card className="border-0 shadow-sm bg-white">
           <CardContent className="p-4">
-            <h3 className="font-semibold text-foreground mb-4">Add Photos (Optional)</h3>
+            <h3 className="font-semibold text-[#212121] mb-4 font-[family-name:var(--font-heading)]">Add Photos (Optional)</h3>
             
             <div className="flex gap-3 flex-wrap">
               {uploadedImages.map((image, index) => (
@@ -155,11 +155,11 @@ export default function ReviewPage() {
                   <img 
                     src={image} 
                     alt={`Upload ${index + 1}`}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-sm"
                   />
                   <button 
                     onClick={() => removeImage(index)}
-                    className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center"
+                    className="absolute -top-2 -right-2 w-5 h-5 bg-[#FF6161] text-white rounded-full flex items-center justify-center"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -169,7 +169,7 @@ export default function ReviewPage() {
               {uploadedImages.length < 4 && (
                 <button 
                   onClick={handleImageUpload}
-                  className="w-20 h-20 border-2 border-dashed border-primary/30 rounded-lg flex flex-col items-center justify-center text-primary hover:border-primary hover:bg-primary/5 transition-colors"
+                  className="w-20 h-20 border-2 border-dashed border-[#2874F0]/30 rounded-sm flex flex-col items-center justify-center text-[#2874F0] hover:border-[#2874F0] hover:bg-[#2874F0]/5 transition-colors"
                 >
                   <Upload className="w-5 h-5 mb-1" />
                   <span className="text-xs">Upload</span>
@@ -180,18 +180,18 @@ export default function ReviewPage() {
         </Card>
 
         {/* Service Review */}
-        <Card className="border shadow-sm">
+        <Card className="border-0 shadow-sm bg-white">
           <CardContent className="p-4">
-            <h3 className="font-semibold text-foreground mb-4">Service Review</h3>
+            <h3 className="font-semibold text-[#212121] mb-4 font-[family-name:var(--font-heading)]">Service Review</h3>
             
             <div className="space-y-4">
               {/* Delivery Speed */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Truck className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#2874F0]/10 rounded-sm flex items-center justify-center">
+                    <Truck className="w-4 h-4 text-[#2874F0]" />
                   </div>
-                  <span className="text-sm text-foreground">Delivery Speed</span>
+                  <span className="text-sm text-[#212121]">Delivery Speed</span>
                 </div>
                 <StarRating 
                   rating={deliveryRating} 
@@ -203,10 +203,10 @@ export default function ReviewPage() {
               {/* Packaging */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Package className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#2874F0]/10 rounded-sm flex items-center justify-center">
+                    <Package className="w-4 h-4 text-[#2874F0]" />
                   </div>
-                  <span className="text-sm text-foreground">Packaging Quality</span>
+                  <span className="text-sm text-[#212121]">Packaging Quality</span>
                 </div>
                 <StarRating 
                   rating={packagingRating} 
@@ -218,10 +218,10 @@ export default function ReviewPage() {
               {/* Staff Behaviour */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <UserCheck className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#2874F0]/10 rounded-sm flex items-center justify-center">
+                    <UserCheck className="w-4 h-4 text-[#2874F0]" />
                   </div>
-                  <span className="text-sm text-foreground">Staff Behaviour</span>
+                  <span className="text-sm text-[#212121]">Staff Behaviour</span>
                 </div>
                 <StarRating 
                   rating={staffRating} 
@@ -237,7 +237,7 @@ export default function ReviewPage() {
         <Button 
           onClick={handleSubmit}
           disabled={productRating === 0 || isSubmitting}
-          className="w-full bg-primary hover:bg-primary/90 text-white font-medium h-12 disabled:opacity-50"
+          className="w-full bg-[#2874F0] hover:bg-[#2874F0]/90 text-white font-medium h-12 disabled:opacity-50"
         >
           {isSubmitting ? "Submitting..." : "Submit Review"}
         </Button>
