@@ -7,13 +7,6 @@ import {
   ShoppingCart, 
   MapPin, 
   Star,
-  Smartphone,
-  Tv,
-  Laptop,
-  AirVent,
-  Refrigerator,
-  WashingMachine,
-  Speaker,
   ChevronDown
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -24,13 +17,13 @@ import { BottomNav } from "@/components/bottom-nav"
 import Link from "next/link"
 
 const categories = [
-  { name: "Mobile", icon: Smartphone },
-  { name: "TV", icon: Tv },
-  { name: "Laptop", icon: Laptop },
-  { name: "AC", icon: AirVent },
-  { name: "Fridge", icon: Refrigerator },
-  { name: "Washer", icon: WashingMachine },
-  { name: "Audio", icon: Speaker },
+  { name: "Mobile", emoji: "📱" },
+  { name: "TV", emoji: "📺" },
+  { name: "Laptop", emoji: "💻" },
+  { name: "AC", emoji: "❄️" },
+  { name: "Fridge", emoji: "🧊" },
+  { name: "Washer", emoji: "🧺" },
+  { name: "Audio", emoji: "🔊" },
 ]
 
 const nearbyShops = [
@@ -55,40 +48,40 @@ export default function HomePage() {
 
   return (
     <MobileShell>
-      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[78px]">
-        {/* Sticky Header */}
-        <header className="sticky top-0 z-40 bg-white shadow-sm pt-[34px]">
+      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[82px]">
+        {/* Sticky Header with Gradient */}
+        <header className="sticky top-0 z-40 bg-gradient-to-r from-[#2874F0] to-[#42A5F5] shadow-[0_2px_12px_rgba(0,0,0,0.08)] pt-[34px]">
           <div className="flex items-center justify-between px-4 py-2">
-            <h1 className="text-[18px] font-bold text-[#212121] font-[family-name:var(--font-heading)]">
-              Sales<span className="text-[#2874F0]">App</span>
+            <h1 className="text-[20px] font-bold text-white">
+              Sales<span className="text-[#FFD700]">App</span>
             </h1>
 
-            <button className="flex items-center gap-1 text-[12px] text-[#212121]">
-              <MapPin className="w-4 h-4 text-[#2874F0]" />
+            <button className="flex items-center gap-1 text-[13px] text-white">
+              <MapPin className="w-4 h-4" />
               <span className="font-medium">Mumbai</span>
-              <ChevronDown className="w-3 h-3 text-[#878787]" />
+              <ChevronDown className="w-3 h-3 opacity-80" />
             </button>
 
             <Link href="/cart" className="relative p-1">
-              <ShoppingCart className="w-6 h-6 text-[#212121]" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#2874F0] text-white text-[10px] rounded-full flex items-center justify-center font-medium">
+              <ShoppingCart className="w-6 h-6 text-white" />
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#FFD700] text-[#212121] text-[11px] rounded-full flex items-center justify-center font-bold">
                 2
               </span>
             </Link>
           </div>
 
           {/* Search Bar */}
-          <div className="px-4 pb-3">
+          <div className="px-4 pb-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#878787]" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#878787]" />
               <input
                 type="text"
                 placeholder="Search products, brands..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-12 pl-10 pr-10 border border-[#E0E0E0] rounded-sm bg-[#F1F3F6] focus:border-[#2874F0] focus:outline-none text-[14px]"
+                className="w-full h-[52px] pl-12 pr-12 border-0 rounded-2xl bg-white focus:ring-2 focus:ring-[#2874F0]/30 focus:outline-none text-[15px] shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2">
+              <button className="absolute right-4 top-1/2 -translate-y-1/2">
                 <Mic className="w-5 h-5 text-[#2874F0]" />
               </button>
             </div>
@@ -96,24 +89,22 @@ export default function HomePage() {
         </header>
 
         {/* Category Chips - Horizontal Scroll */}
-        <div className="px-4 py-3 bg-white overflow-x-auto scrollbar-hide">
-          <div className="flex gap-2">
+        <div className="px-4 py-4 bg-white overflow-x-auto scrollbar-hide shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+          <div className="flex gap-3">
             {categories.map((category) => (
               <button
                 key={category.name}
                 onClick={() => setSelectedCategory(
                   selectedCategory === category.name ? null : category.name
                 )}
-                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-sm transition-colors whitespace-nowrap min-w-[60px] active:scale-95 ${
+                className={`flex flex-col items-center gap-1 px-4 py-3 rounded-2xl transition-colors whitespace-nowrap min-w-[70px] active:scale-95 ${
                   selectedCategory === category.name
-                    ? "bg-[#2874F0]/10 border border-[#2874F0]"
-                    : "bg-[#F1F3F6]"
+                    ? "bg-[#2874F0]/10 border-2 border-[#2874F0]"
+                    : "bg-[#F1F3F6] border-2 border-transparent"
                 }`}
               >
-                <category.icon className={`w-5 h-5 ${
-                  selectedCategory === category.name ? "text-[#2874F0]" : "text-[#878787]"
-                }`} />
-                <span className={`text-[10px] font-medium ${
+                <span className="text-[20px]">{category.emoji}</span>
+                <span className={`text-[11px] font-semibold ${
                   selectedCategory === category.name ? "text-[#2874F0]" : "text-[#212121]"
                 }`}>
                   {category.name}
@@ -124,44 +115,44 @@ export default function HomePage() {
         </div>
 
         {/* Nearby Shops Section */}
-        <section className="px-4 mt-3 mb-3">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-[16px] font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Nearby Shops</h2>
-            <Link href="/shops" className="text-[#2874F0] text-[12px] font-medium">
+        <section className="px-4 mt-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[20px] font-bold text-[#212121]">🏪 Nearby Shops</h2>
+            <Link href="/shops" className="text-[#2874F0] text-[13px] font-semibold">
               View All
             </Link>
           </div>
           <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide">
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {nearbyShops.map((shop) => (
                 <Link key={shop.id} href={`/shop/${shop.id}`}>
-                  <Card className="min-w-[160px] border-0 shadow-sm active:scale-[0.98] transition-transform bg-white">
-                    <CardContent className="p-3">
-                      <div className="flex items-start justify-between mb-1">
-                        <h3 className="font-medium text-[12px] text-[#212121] line-clamp-1">
+                  <Card className="min-w-[180px] border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] active:scale-[0.98] transition-transform bg-white rounded-2xl">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-[15px] text-[#212121] line-clamp-1">
                           {shop.name}
                         </h3>
                         <Badge 
-                          className={shop.isOpen 
-                            ? "bg-[#388E3C] text-white text-[8px] border-0 px-1.5" 
-                            : "bg-[#878787] text-white text-[8px] border-0 px-1.5"}
+                          className={`${shop.isOpen 
+                            ? "bg-[#388E3C] text-white" 
+                            : "bg-[#878787] text-white"} text-[10px] border-0 px-2 rounded-full`}
                         >
                           {shop.isOpen ? "Open" : "Closed"}
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-[#878787] mb-1">
+                      <div className="flex items-center gap-2 text-[11px] text-[#878787] mb-2">
                         <div className="flex items-center gap-0.5">
-                          <Star className="w-3 h-3 fill-[#FFD700] text-[#FFD700]" />
-                          <span>{shop.rating}</span>
+                          <Star className="w-3.5 h-3.5 fill-[#FFD700] text-[#FFD700]" />
+                          <span className="font-medium text-[#212121]">{shop.rating}</span>
                         </div>
                         <span>•</span>
                         <span>{shop.distance}</span>
                       </div>
-                      <div className="flex gap-1 flex-wrap">
+                      <div className="flex gap-1.5 flex-wrap">
                         {shop.brands.slice(0, 2).map((brand) => (
                           <span 
                             key={brand}
-                            className="text-[8px] bg-[#F1F3F6] px-1.5 py-0.5 rounded-sm text-[#878787]"
+                            className="text-[10px] bg-[#F1F3F6] px-2 py-1 rounded-full text-[#878787] font-medium"
                           >
                             {brand}
                           </span>
@@ -177,37 +168,37 @@ export default function HomePage() {
 
         {/* Products Grid */}
         <section className="px-4">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-[16px] font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Popular Products</h2>
-            <Link href="/products" className="text-[#2874F0] text-[12px] font-medium">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[20px] font-bold text-[#212121]">🔥 Popular Products</h2>
+            <Link href="/products" className="text-[#2874F0] text-[13px] font-semibold">
               View All
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             {products.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
-                <Card className="border-0 shadow-sm active:scale-[0.98] transition-transform overflow-hidden bg-white">
+                <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] active:scale-[0.98] transition-transform overflow-hidden bg-white rounded-2xl">
                   <CardContent className="p-0">
-                    <div className="aspect-square bg-white flex items-center justify-center p-3">
+                    <div className="aspect-square bg-white flex items-center justify-center p-4">
                       <img 
                         src={product.image} 
                         alt={product.name}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="p-3">
-                      <h3 className="text-[12px] font-medium text-[#212121] line-clamp-2 mb-1">
+                    <div className="p-4">
+                      <h3 className="text-[13px] font-semibold text-[#212121] line-clamp-2 mb-2">
                         {product.name}
                       </h3>
-                      <p className="text-[14px] text-[#212121] font-bold font-[family-name:var(--font-heading)]">
+                      <p className="text-[17px] text-[#2874F0] font-bold">
                         ₹{product.lowestPrice.toLocaleString()}
                       </p>
-                      <p className="text-[10px] text-[#878787] mt-0.5">
+                      <p className="text-[11px] text-[#878787] mt-1">
                         {product.shopsCount} shops selling
                       </p>
                       <Button 
                         size="sm"
-                        className="w-full mt-2 bg-[#2874F0] active:bg-[#1E5DC8] text-white text-[12px] h-10"
+                        className="w-full mt-3 bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white text-[13px] h-[44px] rounded-xl font-semibold"
                       >
                         Compare
                       </Button>

@@ -60,18 +60,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <MobileShell>
-      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[100px]">
+      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[110px]">
         {/* Header */}
-        <header className="sticky top-0 z-40 bg-white shadow-sm pt-[34px]">
+        <header className="sticky top-0 z-40 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] pt-[34px]">
           <div className="flex items-center justify-between px-4 py-3 h-[56px]">
-            <Link href="/home" className="p-1 -ml-1 active:bg-black/5 rounded-full">
+            <Link href="/home" className="p-2 -ml-2 active:bg-black/5 rounded-2xl">
               <ArrowLeft className="w-6 h-6 text-[#212121]" />
             </Link>
             <div className="flex items-center gap-3">
-              <button className="p-1 active:bg-black/5 rounded-full">
+              <button className="p-2 active:bg-black/5 rounded-2xl">
                 <Share2 className="w-5 h-5 text-[#212121]" />
               </button>
-              <button onClick={() => setIsWishlisted(!isWishlisted)} className="p-1 active:bg-black/5 rounded-full">
+              <button onClick={() => setIsWishlisted(!isWishlisted)} className="p-2 active:bg-black/5 rounded-2xl">
                 <Heart className={`w-5 h-5 ${isWishlisted ? "fill-[#FF6161] text-[#FF6161]" : "text-[#212121]"}`} />
               </button>
             </div>
@@ -86,62 +86,62 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           
           <button 
             onClick={() => setCurrentImage(prev => prev > 0 ? prev - 1 : productImages.length - 1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center active:bg-gray-100"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] flex items-center justify-center active:bg-gray-100"
           >
             <ChevronLeft className="w-5 h-5 text-[#212121]" />
           </button>
           <button 
             onClick={() => setCurrentImage(prev => prev < productImages.length - 1 ? prev + 1 : 0)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center active:bg-gray-100"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] flex items-center justify-center active:bg-gray-100"
           >
             <ChevronRight className="w-5 h-5 text-[#212121]" />
           </button>
 
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
             {productImages.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImage(idx)}
-                className={`w-2 h-2 rounded-full transition-colors ${idx === currentImage ? "bg-[#2874F0]" : "bg-[#212121]/30"}`}
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${idx === currentImage ? "bg-[#2874F0]" : "bg-[#212121]/30"}`}
               />
             ))}
           </div>
         </div>
 
         {/* Product Info */}
-        <div className="px-4 py-4 bg-white mt-2">
-          <Badge className="bg-[#2874F0]/10 text-[#2874F0] border-0 mb-2 text-[10px]">Samsung</Badge>
-          <h1 className="text-[18px] font-semibold text-[#212121] mb-2 font-[family-name:var(--font-heading)]">
-            Samsung Galaxy S24 Ultra 256GB
+        <div className="px-4 py-5 bg-white mt-2 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+          <Badge className="bg-[#2874F0]/10 text-[#2874F0] border-0 mb-3 text-[11px] font-semibold rounded-full px-3">Samsung</Badge>
+          <h1 className="text-[20px] font-bold text-[#212121] mb-3">
+            📱 Samsung Galaxy S24 Ultra 256GB
           </h1>
           <div className="flex gap-2 flex-wrap">
             {productSpecs.map((spec) => (
-              <span key={spec} className="text-[10px] bg-[#F1F3F6] px-2 py-1 rounded-sm text-[#878787]">{spec}</span>
+              <span key={spec} className="text-[11px] bg-[#F1F3F6] px-3 py-1.5 rounded-full text-[#878787] font-medium">{spec}</span>
             ))}
           </div>
         </div>
 
         {/* Compare Prices Section */}
-        <div className="px-4 py-4 mt-2">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-[16px] font-semibold text-[#212121] font-[family-name:var(--font-heading)]">Compare Prices</h2>
-            <span className="text-[12px] text-[#878787]">{shopPrices.length} shops</span>
+        <div className="px-4 py-5 mt-2">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[20px] font-bold text-[#212121]">💰 Compare Prices</h2>
+            <span className="text-[13px] text-[#878787]">{shopPrices.length} shops</span>
           </div>
 
           {/* Sort Options */}
-          <div className="flex gap-2 mb-3 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-3 mb-4 overflow-x-auto scrollbar-hide">
             {[
-              { key: "price" as SortOption, label: "Lowest Price" },
-              { key: "distance" as SortOption, label: "Nearest" },
-              { key: "rating" as SortOption, label: "Best Rated" },
+              { key: "price" as SortOption, label: "💵 Lowest Price" },
+              { key: "distance" as SortOption, label: "📍 Nearest" },
+              { key: "rating" as SortOption, label: "⭐ Best Rated" },
             ].map((option) => (
               <button
                 key={option.key}
                 onClick={() => setSortBy(option.key)}
-                className={`px-3 py-2 text-[12px] rounded-sm whitespace-nowrap transition-colors h-10 min-w-[90px] ${
+                className={`px-4 py-3 text-[13px] rounded-2xl whitespace-nowrap transition-colors h-[48px] min-w-[100px] font-semibold ${
                   sortBy === option.key
-                    ? "bg-[#2874F0] text-white font-medium"
-                    : "bg-white text-[#878787] active:bg-[#F1F3F6]"
+                    ? "bg-gradient-to-r from-[#2874F0] to-[#1565C0] text-white"
+                    : "bg-white text-[#878787] active:bg-[#F1F3F6] shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
                 }`}
               >
                 {option.label}
@@ -150,64 +150,64 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           {/* Shop Cards - Full Width Stacked */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             {sortedShops.map((shop) => (
               <Card 
                 key={shop.id} 
-                className={`border-0 shadow-sm bg-white ${shop.price === lowestPrice ? "ring-2 ring-[#FFD700]" : ""}`}
+                className={`border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl ${shop.price === lowestPrice ? "ring-2 ring-[#FFD700]" : ""}`}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="font-medium text-[14px] text-[#212121]">{shop.name}</h3>
+                        <h3 className="font-semibold text-[15px] text-[#212121]">{shop.name}</h3>
                         {shop.price === lowestPrice && (
-                          <Badge className="bg-[#FFD700] text-[#212121] text-[8px] border-0 px-1.5">Best Deal</Badge>
+                          <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0 px-2 font-bold rounded-full">🔥 Best Deal</Badge>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-[#878787] mt-1">
+                      <div className="flex items-center gap-2 text-[11px] text-[#878787] mt-1">
                         <div className="flex items-center gap-0.5">
-                          <Star className="w-3 h-3 fill-[#FFD700] text-[#FFD700]" />
-                          <span>{shop.rating}</span>
+                          <Star className="w-3.5 h-3.5 fill-[#FFD700] text-[#FFD700]" />
+                          <span className="font-medium text-[#212121]">{shop.rating}</span>
                         </div>
                         <span>•</span>
                         <div className="flex items-center gap-0.5">
-                          <MapPin className="w-3 h-3" />
+                          <MapPin className="w-3.5 h-3.5" />
                           <span>{shop.distance}</span>
                         </div>
                       </div>
                     </div>
-                    <p className="text-[16px] font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+                    <p className="text-[17px] font-bold text-[#2874F0]">
                       ₹{shop.price.toLocaleString()}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 mb-4">
                     {shop.inStock ? (
-                      <span className="flex items-center gap-1 text-[10px] text-[#388E3C]">
-                        <Check className="w-3 h-3" /> In Stock
+                      <span className="flex items-center gap-1 text-[11px] text-[#388E3C] font-medium">
+                        <Check className="w-3.5 h-3.5" /> In Stock
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 text-[10px] text-[#FF6161]">
-                        <Clock className="w-3 h-3" /> Out of Stock
+                      <span className="flex items-center gap-1 text-[11px] text-[#FF6161] font-medium">
+                        <Clock className="w-3.5 h-3.5" /> Out of Stock
                       </span>
                     )}
                     {shop.delivery && (
-                      <Badge className="bg-[#F1F3F6] text-[#212121] text-[8px] gap-1 border-0">
+                      <Badge className="bg-[#F1F3F6] text-[#212121] text-[10px] gap-1 border-0 rounded-full font-medium">
                         <Truck className="w-3 h-3" /> {shop.deliveryTime}
                       </Badge>
                     )}
                     {!shop.delivery && shop.inStock && (
-                      <Badge className="bg-[#F1F3F6] text-[#212121] text-[8px] gap-1 border-0">
+                      <Badge className="bg-[#F1F3F6] text-[#212121] text-[10px] gap-1 border-0 rounded-full font-medium">
                         <Store className="w-3 h-3" /> Pickup Only
                       </Badge>
                     )}
                   </div>
 
                   <Button 
-                    className={`w-full h-12 text-[14px] ${
+                    className={`w-full h-[52px] text-[15px] font-semibold rounded-2xl ${
                       shop.inStock 
-                        ? "bg-[#2874F0] active:bg-[#1E5DC8] text-white" 
+                        ? "bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white" 
                         : "bg-[#F1F3F6] text-[#878787] cursor-not-allowed"
                     }`}
                     disabled={!shop.inStock}
@@ -222,18 +222,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-3 z-50 flex items-center justify-between pb-[22px]">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-4 z-50 flex items-center justify-between pb-[26px] shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
         <div>
-          <p className="text-[10px] text-[#878787]">Lowest Price</p>
+          <p className="text-[11px] text-[#878787]">Lowest Price</p>
           <div className="flex items-center gap-2">
-            <p className="text-[18px] font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+            <p className="text-[20px] font-bold text-[#2874F0]">
               ₹{lowestPrice.toLocaleString()}
             </p>
-            <Badge className="bg-[#FFD700] text-[#212121] text-[8px] border-0 px-1.5">Best Deal</Badge>
+            <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0 px-2 font-bold rounded-full">🔥 Best</Badge>
           </div>
         </div>
         <Link href={`/checkout?shop=${bestDealShop?.id}&product=${resolvedParams.id}`}>
-          <Button className="bg-[#2874F0] active:bg-[#1E5DC8] text-white px-6 h-12 text-[14px]">
+          <Button className="bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white px-8 h-[52px] text-[15px] font-semibold rounded-2xl">
             Buy Now
           </Button>
         </Link>

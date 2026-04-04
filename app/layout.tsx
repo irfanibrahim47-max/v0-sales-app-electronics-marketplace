@@ -1,18 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Nunito_Sans } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const plusJakarta = Plus_Jakarta_Sans({ 
+const poppins = Poppins({ 
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-poppins",
   weight: ["400", "500", "600", "700", "800"]
-});
-
-const nunitoSans = Nunito_Sans({ 
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -35,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakarta.variable} ${nunitoSans.variable} font-sans antialiased bg-[#F1F3F6]`}>
+      <body className={`${poppins.variable} font-sans antialiased bg-[#F1F3F6]`}>
         {children}
         <Analytics />
       </body>

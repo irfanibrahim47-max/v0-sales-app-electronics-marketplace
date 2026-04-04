@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, Minus, Plus, Trash2, Store } from "lucide-react"
+import { Minus, Plus, Trash2, Store } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MobileShell } from "@/components/mobile-shell"
@@ -57,15 +57,15 @@ export default function CartPage() {
     return (
       <MobileShell>
         <div className="h-full bg-[#F1F3F6]">
-          <MobileHeader title="My Cart" backHref="/home" />
+          <MobileHeader title="🛒 My Cart" backHref="/home" />
           <div className="flex flex-col items-center justify-center h-[60vh] px-4">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
-              <Store className="w-10 h-10 text-[#878787]" />
+            <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mb-5 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+              <span className="text-4xl">🛒</span>
             </div>
-            <h2 className="text-[16px] font-semibold text-[#212121] mb-2 font-[family-name:var(--font-heading)]">Your cart is empty</h2>
-            <p className="text-[#878787] text-center mb-6 text-[12px]">Browse products and add them to your cart</p>
+            <h2 className="text-[20px] font-bold text-[#212121] mb-2">Your cart is empty</h2>
+            <p className="text-[#878787] text-center mb-6 text-[13px]">Browse products and add them to your cart</p>
             <Link href="/home">
-              <Button className="bg-[#2874F0] active:bg-[#1E5DC8] text-white h-12 px-6 text-[14px]">Start Shopping</Button>
+              <Button className="bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white h-[52px] px-8 text-[15px] font-semibold rounded-2xl">Start Shopping</Button>
             </Link>
           </div>
         </div>
@@ -75,47 +75,47 @@ export default function CartPage() {
 
   return (
     <MobileShell>
-      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[180px]">
-        <MobileHeader title="My Cart" backHref="/home" />
+      <div className="h-full overflow-y-auto bg-[#F1F3F6] pb-[200px]">
+        <MobileHeader title="🛒 My Cart" backHref="/home" />
 
         {/* Cart Items */}
-        <div className="px-4 py-4 space-y-4">
+        <div className="px-4 py-5 space-y-6">
           {Object.values(groupedItems).map((group) => (
             <div key={group.shopId}>
-              <div className="flex items-center gap-2 mb-3">
-                <Store className="w-4 h-4 text-[#2874F0]" />
-                <span className="font-medium text-[#212121] text-[12px]">{group.shopName}</span>
+              <div className="flex items-center gap-2 mb-4">
+                <Store className="w-5 h-5 text-[#2874F0]" />
+                <span className="font-semibold text-[#212121] text-[13px]">🏪 {group.shopName}</span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {group.items.map((item) => (
-                  <Card key={item.id} className="border-0 shadow-sm bg-white">
-                    <CardContent className="p-3">
-                      <div className="flex gap-3">
-                        <div className="w-16 h-16 bg-white rounded-sm flex-shrink-0 flex items-center justify-center">
-                          <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
+                  <Card key={item.id} className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
+                    <CardContent className="p-4">
+                      <div className="flex gap-4">
+                        <div className="w-20 h-20 bg-white rounded-2xl flex-shrink-0 flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-contain p-2" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-[#212121] text-[12px] line-clamp-2 mb-1">{item.name}</h3>
-                          <p className="text-[14px] text-[#212121] font-bold font-[family-name:var(--font-heading)]">₹{item.price.toLocaleString()}</p>
+                          <h3 className="font-semibold text-[#212121] text-[13px] line-clamp-2 mb-2">{item.name}</h3>
+                          <p className="text-[17px] text-[#2874F0] font-bold">₹{item.price.toLocaleString()}</p>
                           
-                          <div className="flex items-center justify-between mt-2">
-                            <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center gap-3">
                               <button 
                                 onClick={() => updateQuantity(item.id, -1)}
-                                className="w-8 h-8 border border-[#E0E0E0] rounded-sm flex items-center justify-center active:border-[#2874F0]"
+                                className="w-10 h-10 border-2 border-[#E0E0E0] rounded-xl flex items-center justify-center active:border-[#2874F0] active:bg-[#2874F0]/5"
                               >
-                                <Minus className="w-4 h-4 text-[#212121]" />
+                                <Minus className="w-5 h-5 text-[#212121]" />
                               </button>
-                              <span className="w-6 text-center font-medium text-[#212121] text-[14px]">{item.quantity}</span>
+                              <span className="w-8 text-center font-bold text-[#212121] text-[15px]">{item.quantity}</span>
                               <button 
                                 onClick={() => updateQuantity(item.id, 1)}
-                                className="w-8 h-8 border border-[#E0E0E0] rounded-sm flex items-center justify-center active:border-[#2874F0]"
+                                className="w-10 h-10 border-2 border-[#E0E0E0] rounded-xl flex items-center justify-center active:border-[#2874F0] active:bg-[#2874F0]/5"
                               >
-                                <Plus className="w-4 h-4 text-[#212121]" />
+                                <Plus className="w-5 h-5 text-[#212121]" />
                               </button>
                             </div>
-                            <button onClick={() => removeItem(item.id)} className="p-2 text-[#878787] active:text-[#FF6161]">
+                            <button onClick={() => removeItem(item.id)} className="p-2.5 text-[#878787] active:text-[#FF6161] rounded-xl active:bg-[#FF6161]/5">
                               <Trash2 className="w-5 h-5" />
                             </button>
                           </div>
@@ -131,10 +131,10 @@ export default function CartPage() {
       </div>
 
       {/* Order Summary - Fixed at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-4 z-50 pb-[22px]">
-        <Card className="border-0 shadow-sm mb-3 bg-[#F1F3F6]">
-          <CardContent className="p-3">
-            <div className="space-y-2 text-[12px]">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-5 z-50 pb-[26px] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+        <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] mb-4 bg-[#F1F3F6] rounded-2xl">
+          <CardContent className="p-4">
+            <div className="space-y-2 text-[13px]">
               <div className="flex justify-between text-[#878787]">
                 <span>Subtotal</span>
                 <span>₹{subtotal.toLocaleString()}</span>
@@ -144,16 +144,16 @@ export default function CartPage() {
                 <span>₹{deliveryFee}</span>
               </div>
               <div className="h-px bg-[#E0E0E0] my-2" />
-              <div className="flex justify-between font-semibold text-[#212121] text-[14px]">
+              <div className="flex justify-between font-bold text-[#212121] text-[15px]">
                 <span>Total</span>
-                <span className="font-[family-name:var(--font-heading)]">₹{total.toLocaleString()}</span>
+                <span className="text-[#2874F0]">₹{total.toLocaleString()}</span>
               </div>
             </div>
           </CardContent>
         </Card>
         
         <Link href="/checkout" className="block">
-          <Button className="w-full bg-[#2874F0] active:bg-[#1E5DC8] text-white font-medium h-12 text-[14px]">
+          <Button className="w-full bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white font-semibold h-[52px] text-[15px] rounded-2xl">
             Proceed to Checkout
           </Button>
         </Link>

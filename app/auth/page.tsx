@@ -48,18 +48,18 @@ function AuthContent() {
         <div className="h-full overflow-y-auto bg-[#F1F3F6] flex flex-col items-center justify-center px-4 pt-[34px]">
           <div className="w-full">
             <div className="text-center mb-6">
-              <h1 className="text-2xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+              <h1 className="text-2xl font-bold text-[#212121]">
                 Sales<span className="text-[#2874F0]">App</span>
               </h1>
             </div>
 
-            <Card className="border-0 shadow-md bg-white">
-              <CardContent className="pt-6 pb-6">
+            <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
+              <CardContent className="pt-6 pb-6 px-4">
                 <div className="text-center mb-6">
-                  <h2 className="text-[18px] font-semibold text-[#212121] mb-2 font-[family-name:var(--font-heading)]">
-                    Verify OTP
+                  <h2 className="text-[20px] font-bold text-[#212121] mb-2">
+                    🔐 Verify OTP
                   </h2>
-                  <p className="text-[#878787] text-[12px]">
+                  <p className="text-[#878787] text-[13px]">
                     Enter the 4-digit code sent to your phone
                   </p>
                 </div>
@@ -71,22 +71,22 @@ function AuthContent() {
                     onChange={setOtp}
                     onComplete={handleOtpComplete}
                   >
-                    <InputOTPGroup className="gap-2">
-                      <InputOTPSlot index={0} className="w-12 h-12 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-lg" />
-                      <InputOTPSlot index={1} className="w-12 h-12 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-lg" />
-                      <InputOTPSlot index={2} className="w-12 h-12 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-lg" />
-                      <InputOTPSlot index={3} className="w-12 h-12 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-lg" />
+                    <InputOTPGroup className="gap-3">
+                      <InputOTPSlot index={0} className="w-14 h-14 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-2xl font-bold" />
+                      <InputOTPSlot index={1} className="w-14 h-14 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-2xl font-bold" />
+                      <InputOTPSlot index={2} className="w-14 h-14 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-2xl font-bold" />
+                      <InputOTPSlot index={3} className="w-14 h-14 text-lg border-2 border-[#E0E0E0] focus:border-[#2874F0] rounded-2xl font-bold" />
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
 
                 <div className="text-center mb-5">
                   {countdown > 0 ? (
-                    <p className="text-[#878787] text-[12px]">
-                      Resend code in <span className="text-[#2874F0] font-medium">{countdown}s</span>
+                    <p className="text-[#878787] text-[13px]">
+                      Resend code in <span className="text-[#2874F0] font-bold">{countdown}s</span>
                     </p>
                   ) : (
-                    <button className="text-[#2874F0] font-medium text-[12px] active:underline">
+                    <button className="text-[#2874F0] font-semibold text-[13px] active:underline">
                       Resend Code
                     </button>
                   )}
@@ -94,7 +94,7 @@ function AuthContent() {
 
                 <Button 
                   onClick={handleOtpComplete}
-                  className="w-full h-12 bg-[#2874F0] hover:bg-[#2874F0] active:bg-[#1E5DC8] text-white font-medium text-[14px]"
+                  className="w-full h-[52px] bg-gradient-to-r from-[#2874F0] to-[#1565C0] hover:from-[#2874F0] hover:to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white font-semibold text-[15px] rounded-2xl"
                 >
                   Verify & Continue
                 </Button>
@@ -103,7 +103,7 @@ function AuthContent() {
 
             <button 
               onClick={() => setShowOtp(false)}
-              className="w-full text-center text-[#878787] text-[12px] mt-4 active:text-[#2874F0] transition-colors"
+              className="w-full text-center text-[#878787] text-[13px] mt-4 active:text-[#2874F0] transition-colors"
             >
               Go back
             </button>
@@ -118,57 +118,57 @@ function AuthContent() {
       <div className="h-full overflow-y-auto bg-[#F1F3F6] flex flex-col items-center justify-center px-4 pt-[34px]">
         <div className="w-full">
           <div className="text-center mb-6">
-            <Link href="/onboarding">
-              <h1 className="text-2xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+            <Link href="/">
+              <h1 className="text-2xl font-bold text-[#212121]">
                 Sales<span className="text-[#2874F0]">App</span>
               </h1>
             </Link>
-            <p className="text-[#878787] text-[12px] mt-1 capitalize">
-              {role} Account
+            <p className="text-[#878787] text-[13px] mt-1 capitalize">
+              {role === "customer" ? "🛒 Customer" : "🏪 Shop Owner"} Account
             </p>
           </div>
 
-          <Card className="border-0 shadow-md bg-white">
-            <CardContent className="pt-5 pb-5">
+          <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
+            <CardContent className="pt-5 pb-5 px-4">
               <Tabs defaultValue="login" className="w-full">
-                <TabsList className="w-full grid grid-cols-2 mb-5 bg-[#F1F3F6] h-10">
-                  <TabsTrigger value="login" className="text-[12px] data-[state=active]:bg-white data-[state=active]:text-[#2874F0] data-[state=active]:shadow-sm">
+                <TabsList className="w-full grid grid-cols-2 mb-5 bg-[#F1F3F6] h-12 rounded-2xl p-1">
+                  <TabsTrigger value="login" className="text-[13px] font-semibold data-[state=active]:bg-white data-[state=active]:text-[#2874F0] data-[state=active]:shadow-sm rounded-xl">
                     Login
                   </TabsTrigger>
-                  <TabsTrigger value="register" className="text-[12px] data-[state=active]:bg-white data-[state=active]:text-[#2874F0] data-[state=active]:shadow-sm">
+                  <TabsTrigger value="register" className="text-[13px] font-semibold data-[state=active]:bg-white data-[state=active]:text-[#2874F0] data-[state=active]:shadow-sm rounded-xl">
                     Register
                   </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="login">
-                  <form onSubmit={handleSubmit} className="space-y-3">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <Input 
                       type="text" 
                       placeholder="Phone or Email"
-                      className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[14px]"
+                      className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[15px] rounded-2xl px-4"
                     />
                     <div className="relative">
                       <Input 
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
-                        className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-10 text-[14px]"
+                        className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-12 text-[15px] rounded-2xl px-4"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
                       >
                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                       </button>
                     </div>
                     <div className="text-right">
-                      <button type="button" className="text-[#2874F0] text-[12px] active:underline">
+                      <button type="button" className="text-[#2874F0] text-[13px] font-semibold active:underline">
                         Forgot Password?
                       </button>
                     </div>
                     <Button 
                       type="submit"
-                      className="w-full h-12 bg-[#2874F0] hover:bg-[#2874F0] active:bg-[#1E5DC8] text-white font-medium text-[14px]"
+                      className="w-full h-[52px] bg-gradient-to-r from-[#2874F0] to-[#1565C0] hover:from-[#2874F0] hover:to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white font-semibold text-[15px] rounded-2xl"
                     >
                       Continue
                     </Button>
@@ -176,32 +176,32 @@ function AuthContent() {
                 </TabsContent>
 
                 <TabsContent value="register">
-                  <form onSubmit={handleSubmit} className="space-y-3">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <Input 
                       type="text" 
                       placeholder="Full Name"
-                      className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[14px]"
+                      className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[15px] rounded-2xl px-4"
                     />
                     <Input 
                       type="tel" 
                       placeholder="Phone Number"
-                      className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[14px]"
+                      className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[15px] rounded-2xl px-4"
                     />
                     <Input 
                       type="email" 
                       placeholder="Email Address"
-                      className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[14px]"
+                      className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] text-[15px] rounded-2xl px-4"
                     />
                     <div className="relative">
                       <Input 
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
-                        className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-10 text-[14px]"
+                        className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-12 text-[15px] rounded-2xl px-4"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
                       >
                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                       </button>
@@ -210,19 +210,19 @@ function AuthContent() {
                       <Input 
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Password"
-                        className="h-12 border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-10 text-[14px]"
+                        className="h-[52px] border-2 border-[#E0E0E0] focus:border-[#2874F0] pr-12 text-[15px] rounded-2xl px-4"
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#878787] active:text-[#212121]"
                       >
                         {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                       </button>
                     </div>
                     <Button 
                       type="submit"
-                      className="w-full h-12 bg-[#2874F0] hover:bg-[#2874F0] active:bg-[#1E5DC8] text-white font-medium text-[14px]"
+                      className="w-full h-[52px] bg-gradient-to-r from-[#2874F0] to-[#1565C0] hover:from-[#2874F0] hover:to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white font-semibold text-[15px] rounded-2xl"
                     >
                       Continue
                     </Button>
@@ -235,14 +235,14 @@ function AuthContent() {
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-[#E0E0E0]"></div>
                   </div>
-                  <div className="relative flex justify-center text-[10px] uppercase">
-                    <span className="bg-white px-2 text-[#878787]">Or</span>
+                  <div className="relative flex justify-center text-[11px] uppercase">
+                    <span className="bg-white px-3 text-[#878787] font-medium">Or</span>
                   </div>
                 </div>
 
                 <Button 
                   variant="outline"
-                  className="w-full h-12 mt-4 border-2 border-[#2874F0] text-[#2874F0] active:bg-[#2874F0]/5 text-[14px]"
+                  className="w-full h-[52px] mt-4 border-2 border-[#2874F0] text-[#2874F0] active:bg-[#2874F0]/5 text-[15px] font-semibold rounded-2xl"
                 >
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -257,8 +257,8 @@ function AuthContent() {
           </Card>
 
           <Link 
-            href="/onboarding"
-            className="block text-center text-[#878787] text-[12px] mt-4 active:text-[#2874F0] transition-colors"
+            href="/"
+            className="block text-center text-[#878787] text-[13px] mt-4 active:text-[#2874F0] transition-colors"
           >
             Back to start
           </Link>
@@ -274,10 +274,10 @@ export default function AuthPage() {
       <MobileShell>
         <div className="h-full bg-[#F1F3F6] flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-[#212121] font-[family-name:var(--font-heading)]">
+            <h1 className="text-2xl font-bold text-[#212121]">
               Sales<span className="text-[#2874F0]">App</span>
             </h1>
-            <p className="text-[#878787] mt-2 text-[12px]">Loading...</p>
+            <p className="text-[#878787] mt-2 text-[13px]">Loading...</p>
           </div>
         </div>
       </MobileShell>

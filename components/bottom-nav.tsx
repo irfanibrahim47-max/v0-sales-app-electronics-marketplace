@@ -5,19 +5,19 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const navItems = [
-  { icon: Home, label: "Home", href: "/home" },
-  { icon: Search, label: "Search", href: "/search" },
-  { icon: ShoppingBag, label: "Orders", href: "/orders/12345678" },
-  { icon: MessageCircle, label: "Chat", href: "/chat/1" },
-  { icon: User, label: "Profile", href: "/profile" },
+  { icon: Home, label: "Home", emoji: "🏠", href: "/home" },
+  { icon: Search, label: "Search", emoji: "🔍", href: "/search" },
+  { icon: ShoppingBag, label: "Orders", emoji: "📦", href: "/orders/12345678" },
+  { icon: MessageCircle, label: "Chat", emoji: "💬", href: "/chat/1" },
+  { icon: User, label: "Profile", emoji: "👤", href: "/profile" },
 ]
 
 export function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] z-40 pb-[22px]">
-      <div className="flex items-center justify-around h-[56px]">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] z-40 pb-[22px] shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
+      <div className="flex items-center justify-around h-[60px]">
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href.split("/")[1] ? `/${item.href.split("/")[1]}` : item.href)
           
@@ -27,11 +27,8 @@ export function BottomNav() {
               href={item.href}
               className="flex flex-col items-center justify-center gap-0.5 min-w-[64px] h-full active:bg-black/5 transition-colors"
             >
-              <item.icon 
-                className={`w-6 h-6 ${isActive ? "text-[#2874F0]" : "text-[#878787]"}`}
-                strokeWidth={isActive ? 2.5 : 2}
-              />
-              <span className={`text-[10px] font-medium ${isActive ? "text-[#2874F0]" : "text-[#878787]"}`}>
+              <span className="text-[18px]">{item.emoji}</span>
+              <span className={`text-[11px] font-medium ${isActive ? "text-[#2874F0]" : "text-[#878787]"}`}>
                 {item.label}
               </span>
             </Link>
