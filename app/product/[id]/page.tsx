@@ -13,11 +13,15 @@ import {
   Share2,
   Heart,
   Check,
-  Clock
+  Clock,
+  Bell,
+  CheckCircle
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Switch } from "@/components/ui/switch"
 import { MobileShell } from "@/components/mobile-shell"
 import Link from "next/link"
 
@@ -45,6 +49,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const [currentImage, setCurrentImage] = useState(0)
   const [sortBy, setSortBy] = useState<SortOption>("price")
   const [isWishlisted, setIsWishlisted] = useState(false)
+  const [priceAlertValue, setPriceAlertValue] = useState("")
+  const [notifyNewShops, setNotifyNewShops] = useState(false)
+  const [alertSet, setAlertSet] = useState(false)
 
   const sortedShops = [...shopPrices].sort((a, b) => {
     switch (sortBy) {
@@ -148,6 +155,60 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </button>
             ))}
           </div>
+
+          {/* Price Alert Card */}
+          <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl mb-4">
+            <CardContent className="p-4">
+              {!alertSet ? (
+                <>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Bell className="w-5 h-5 text-[#2874F0]" />
+                    <h3 className="text-[15px] font-semibold text-[#212121]">Set a Price Alert</h3>
+                  </div>
+                  <div className="mb-4">
+                    <label className="text-[13px] text-[#878787] mb-2 block">Alert me when price drops below</label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[15px] text-[#878787]">Rs.</span>
+                      <Input
+                        type="number"
+                        value={priceAlertValue}
+                        onChange={(e) => setPriceAlertValue(e.target.value)}
+                        placeholder="120000"
+                        className="h-[52px] rounded-xl border-[#E0E0E0] text-[15px] pl-12"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[13px] text-[#212121]">Notify when new shops add this product</span>
+                    <Switch
+                      checked={notifyNewShops}
+                      onCheckedChange={setNotifyNewShops}
+                    />
+                  </div>
+                  <Button 
+                    onClick={() => setAlertSet(true)}
+                    className="w-full h-[52px] bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white text-[15px] font-semibold rounded-2xl"
+                  >
+                    Set Alert
+                  </Button>
+                </>
+              ) : (
+                <div className="flex flex-col items-center py-4">
+                  <div className="w-16 h-16 bg-[#388E3C]/10 rounded-full flex items-center justify-center mb-3">
+                    <CheckCircle className="w-8 h-8 text-[#388E3C]" />
+                  </div>
+                  <p className="text-[15px] font-semibold text-[#212121] mb-1">Price Alert Set!</p>
+                  <p className="text-[13px] text-[#878787] text-center">{"We'll notify you when the price drops below Rs."}{priceAlertValue || "120000"}</p>
+                  <button 
+                    onClick={() => setAlertSet(false)}
+                    className="text-[13px] text-[#2874F0] font-medium mt-3"
+                  >
+                    Edit Alert
+                  </button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           {/* Shop Cards - Full Width Stacked */}
           <div className="space-y-4">

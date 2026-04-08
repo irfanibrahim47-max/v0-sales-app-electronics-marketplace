@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 const navItems = [
   { icon: Home, label: "Home", emoji: "🏠", href: "/home" },
   { icon: Search, label: "Search", emoji: "🔍", href: "/search" },
-  { icon: ShoppingBag, label: "Orders", emoji: "📦", href: "/orders/12345678" },
+  { icon: ShoppingBag, label: "Orders", emoji: "📦", href: "/orders" },
   { icon: MessageCircle, label: "Chat", emoji: "💬", href: "/chat/1" },
   { icon: User, label: "Profile", emoji: "👤", href: "/profile" },
 ]
