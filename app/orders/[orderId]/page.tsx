@@ -62,21 +62,19 @@ export default function OrderTrackingPage() {
             <CardContent className="p-5">
               <h3 className="font-bold text-[15px] text-[#212121] mb-5">📍 Order Status</h3>
               
-              <div className="relative">
+              <div className="space-y-0">
                 {trackingSteps.map((step, index) => (
-                  <div key={step.id} className="flex gap-4 pb-6 last:pb-0">
-                    {index < trackingSteps.length - 1 && (
-                      <div 
-                        className={`absolute left-4 w-0.5 ${trackingSteps[index + 1].completed ? "bg-[#2874F0]" : "bg-[#E0E0E0]"}`}
-                        style={{ top: `${index * 76 + 32}px`, height: "44px" }}
-                      />
-                    )}
-                    
-                    <div className={`relative z-10 w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${step.completed ? "bg-[#2874F0]" : "bg-[#E0E0E0]"}`}>
-                      {step.completed ? <Check className="w-5 h-5 text-white" /> : <div className="w-2.5 h-2.5 bg-[#878787]/50 rounded-full" />}
+                  <div key={step.id} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${step.completed ? "bg-[#2874F0]" : "bg-[#E0E0E0]"}`}>
+                        {step.completed ? <Check className="w-5 h-5 text-white" /> : <div className="w-2.5 h-2.5 bg-[#878787]/50 rounded-full" />}
+                      </div>
+                      {index < trackingSteps.length - 1 && (
+                        <div className={`w-0.5 flex-1 min-h-[44px] ${trackingSteps[index + 1].completed ? "bg-[#2874F0]" : "bg-[#E0E0E0]"}`} />
+                      )}
                     </div>
                     
-                    <div className="flex-1">
+                    <div className="flex-1 pb-6 last:pb-0">
                       <div className="flex items-start justify-between">
                         <div>
                           <h4 className={`font-semibold text-[15px] ${step.completed ? "text-[#212121]" : "text-[#878787]"}`}>{step.emoji} {step.title}</h4>

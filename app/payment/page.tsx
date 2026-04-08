@@ -14,7 +14,7 @@ export default function PaymentPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setStatus(Math.random() > 0.2 ? "success" : "failed")
+      setStatus("success")
     }, 3000)
     return () => clearTimeout(timer)
   }, [])
