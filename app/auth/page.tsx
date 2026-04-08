@@ -36,7 +36,9 @@ function AuthContent() {
 
   const handleOtpComplete = () => {
     if (role === "vendor") {
-      window.location.href = "/vendor/dashboard"
+      // New vendors go to registration, existing vendors go to dashboard
+      // For demo, we always go to registration
+      window.location.href = "/vendor/register"
     } else {
       window.location.href = "/home"
     }
