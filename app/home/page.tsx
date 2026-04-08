@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { 
   Search, 
   Mic, 
@@ -26,6 +26,14 @@ const categories = [
   { name: "Audio", emoji: "🔊" },
 ]
 
+const flashDeals = [
+  { id: 1, name: "iPhone 15 Pro", dealPrice: 119999, originalPrice: 134900, discount: 11 },
+  { id: 2, name: "Samsung TV 55\"", dealPrice: 44999, originalPrice: 59990, discount: 25 },
+  { id: 3, name: "Sony WH-1000XM5", dealPrice: 24990, originalPrice: 29990, discount: 17 },
+]
+
+const topBrands = ["Samsung", "Apple", "LG", "Sony", "OnePlus", "Xiaomi", "Dell", "HP", "boAt", "JBL"]
+
 const nearbyShops = [
   { id: 1, name: "Tech World", rating: 4.5, distance: "0.5 km", isOpen: true, brands: ["Samsung", "LG", "Sony"] },
   { id: 2, name: "Digital Hub", rating: 4.2, distance: "1.2 km", isOpen: true, brands: ["Apple", "OnePlus"] },
@@ -45,6 +53,21 @@ const products = [
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
+  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 45, seconds: 30 })
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev
+        seconds--
+        if (seconds < 0) { seconds = 59; minutes-- }
+        if (minutes < 0) { minutes = 59; hours-- }
+        if (hours < 0) return { hours: 2, minutes: 45, seconds: 30 }
+        return { hours, minutes, seconds }
+      })
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <MobileShell>
@@ -113,6 +136,59 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
+        {/* Flash Deals Banner */}
+        <section className="px-4 mt-6">
+          <Card className="border-0 bg-gradient-to-r from-[#FF6B35] to-[#E53E3E] rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-[18px] font-bold text-white">Flash Deals</span>
+                </div>
+                <div className="flex items-center gap-1 bg-white/20 rounded-xl px-3 py-1.5">
+                  <span className="text-white text-[11px]">Ends in</span>
+                  <span className="text-white font-mono font-bold text-[13px]">
+                    {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+              <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-1 px-1">
+                {flashDeals.map((deal) => (
+                  <Link key={deal.id} href={`/product/${deal.id}`}>
+                    <div className="bg-white/20 rounded-xl px-4 py-3 min-w-[140px] active:bg-white/30">
+                      <p className="text-white text-[13px] font-semibold line-clamp-1">{deal.name}</p>
+                      <p className="text-white text-[15px] font-bold mt-1">{deal.dealPrice.toLocaleString()}</p>
+                      <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0 mt-1 rounded-full font-bold px-2">
+                        {deal.discount}% OFF
+                      </Badge>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <Link href="/deals" className="text-white/90 text-[13px] font-semibold mt-3 flex items-center justify-end">
+                View All Deals
+              </Link>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Top Brands */}
+        <section className="px-4 mt-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[18px] font-bold text-[#212121]">Top Brands</h2>
+            <Link href="/brands" className="text-[#2874F0] text-[13px] font-semibold">View All</Link>
+          </div>
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-1 px-1">
+            {topBrands.map((brand) => (
+              <button 
+                key={brand}
+                className="bg-white border-2 border-[#E0E0E0] rounded-full px-5 py-3 text-[13px] font-semibold text-[#212121] whitespace-nowrap active:border-[#2874F0] active:bg-[#2874F0]/5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+              >
+                {brand}
+              </button>
+            ))}
+          </div>
+        </section>
 
         {/* Nearby Shops Section */}
         <section className="px-4 mt-6 mb-6">
