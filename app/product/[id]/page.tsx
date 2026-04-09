@@ -1,22 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { use } from "react"
-import { 
-  ArrowLeft, 
-  Star, 
-  MapPin, 
-  Truck, 
-  Store,
-  ChevronLeft,
-  ChevronRight,
-  Share2,
-  Heart,
-  Check,
-  Clock,
-  Bell,
-  CheckCircle
-} from "lucide-react"
+import { ArrowLeft, Star, MapPin, Truck, Store, ChevronLeft, ChevronRight, Share2, Heart, Check, Clock, Bell, CircleCheck as CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -44,8 +29,7 @@ const shopPrices = [
 
 type SortOption = "price" | "distance" | "rating"
 
-export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params)
+export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const [currentImage, setCurrentImage] = useState(0)
   const [sortBy, setSortBy] = useState<SortOption>("price")
   const [isWishlisted, setIsWishlisted] = useState(false)
@@ -293,7 +277,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <Badge className="bg-[#FFD700] text-[#212121] text-[10px] border-0 px-2 font-bold rounded-full">🔥 Best</Badge>
           </div>
         </div>
-        <Link href={`/checkout?shop=${bestDealShop?.id}&product=${resolvedParams.id}`}>
+        <Link href={`/checkout?shop=${bestDealShop?.id}&product=${params.id}`}>
           <Button className="bg-gradient-to-r from-[#2874F0] to-[#1565C0] active:from-[#1E5DC8] active:to-[#0D47A1] text-white px-8 h-[52px] text-[15px] font-semibold rounded-2xl">
             Buy Now
           </Button>
