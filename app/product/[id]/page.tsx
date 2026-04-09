@@ -10,6 +10,8 @@ import {
   Store,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Share2,
   Heart,
   Check,
@@ -32,7 +34,18 @@ const productImages = [
   "/placeholder.svg?height=400&width=400",
 ]
 
-const productSpecs = ["6.8\" AMOLED", "200MP Camera", "5000mAh", "12GB RAM", "256GB"]
+const productSpecsChips = ["6.8\" AMOLED", "200MP Camera", "5000mAh", "12GB RAM", "256GB"]
+
+const fullSpecs = [
+  { label: "Display", value: "6.8\" Dynamic AMOLED 2X, 120Hz" },
+  { label: "Camera", value: "200MP + 12MP + 10MP + 10MP" },
+  { label: "Battery", value: "5000mAh, 45W Fast Charging" },
+  { label: "Processor", value: "Snapdragon 8 Gen 3" },
+  { label: "RAM", value: "12GB LPDDR5X" },
+  { label: "Storage", value: "256GB UFS 4.0" },
+  { label: "OS", value: "Android 14, One UI 6.1" },
+  { label: "Weight", value: "233g" },
+]
 
 const shopPrices = [
   { id: 1, name: "Tech World Electronics", distance: "0.5 km", price: 124999, rating: 4.5, inStock: true, delivery: true, deliveryTime: "Same Day" },
@@ -52,6 +65,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const [priceAlertValue, setPriceAlertValue] = useState("")
   const [notifyNewShops, setNotifyNewShops] = useState(false)
   const [alertSet, setAlertSet] = useState(false)
+  const [specsExpanded, setSpecsExpanded] = useState(false)
 
   const sortedShops = [...shopPrices].sort((a, b) => {
     switch (sortBy) {
@@ -122,11 +136,47 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             📱 Samsung Galaxy S24 Ultra 256GB
           </h1>
           <div className="flex gap-2 flex-wrap">
-            {productSpecs.map((spec) => (
+            {productSpecsChips.map((spec) => (
               <span key={spec} className="text-[11px] bg-[#F1F3F6] px-3 py-1.5 rounded-full text-[#878787] font-medium">{spec}</span>
             ))}
           </div>
         </div>
+
+        {/* Specifications */}
+        <Card className="mx-4 mt-4 border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
+          <CardContent className="p-0">
+            <button 
+              onClick={() => setSpecsExpanded(!specsExpanded)}
+              className="w-full flex items-center justify-between p-4 active:bg-[#F1F3F6]"
+            >
+              <h3 className="text-[15px] font-semibold text-[#212121]">Specifications</h3>
+              {specsExpanded ? (
+                <ChevronUp className="w-5 h-5 text-[#878787]" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-[#878787]" />
+              )}
+            </button>
+            <div className={`overflow-hidden transition-all ${specsExpanded ? "max-h-[600px]" : "max-h-[180px]"}`}>
+              {fullSpecs.slice(0, specsExpanded ? fullSpecs.length : 4).map((spec, idx) => (
+                <div 
+                  key={spec.label}
+                  className={`flex justify-between px-4 py-3 text-[13px] ${idx % 2 === 0 ? "bg-white" : "bg-[#F1F3F6]"}`}
+                >
+                  <span className="text-[#878787]">{spec.label}</span>
+                  <span className="text-[#212121] font-medium text-right flex-1 ml-4">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+            {!specsExpanded && (
+              <button 
+                onClick={() => setSpecsExpanded(true)}
+                className="w-full py-3 text-[#2874F0] text-[13px] font-semibold border-t border-[#E0E0E0]"
+              >
+                Show More
+              </button>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Compare Prices Section */}
         <div className="px-4 py-5 mt-2">

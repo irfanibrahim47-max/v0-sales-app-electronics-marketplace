@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Minus, Plus, Trash2, Store } from "lucide-react"
+import { Minus, Plus, Trash2, Store, Tag, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import { MobileShell } from "@/components/mobile-shell"
 import { MobileHeader } from "@/components/mobile-header"
 import Link from "next/link"
@@ -25,6 +26,8 @@ const initialCartItems: CartItem[] = [
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems)
+  const [couponCode, setCouponCode] = useState("")
+  const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number } | null>(null)
 
   const updateQuantity = (id: number, delta: number) => {
     setCartItems(prev => prev.map(item => {
@@ -40,9 +43,23 @@ export default function CartPage() {
     setCartItems(prev => prev.filter(item => item.id !== id))
   }
 
+  const applyCoupon = () => {
+    if (couponCode.toUpperCase() === "SAVE10") {
+      setAppliedCoupon({ code: "SAVE10", discount: 500 })
+    } else if (couponCode.toUpperCase() === "FIRST50") {
+      setAppliedCoupon({ code: "FIRST50", discount: 1000 })
+    }
+    setCouponCode("")
+  }
+
+  const removeCoupon = () => {
+    setAppliedCoupon(null)
+  }
+
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const deliveryFee = 49
-  const total = subtotal + deliveryFee
+  const discount = appliedCoupon?.discount || 0
+  const total = subtotal + deliveryFee - discount
 
   const groupedItems = cartItems.reduce((groups, item) => {
     const key = item.shopId
@@ -84,7 +101,7 @@ export default function CartPage() {
             <div key={group.shopId}>
               <div className="flex items-center gap-2 mb-4">
                 <Store className="w-5 h-5 text-[#2874F0]" />
-                <span className="font-semibold text-[#212121] text-[13px]">🏪 {group.shopName}</span>
+                <span className="font-semibold text-[#212121] text-[13px]">{group.shopName}</span>
               </div>
 
               <div className="space-y-4">
@@ -97,7 +114,7 @@ export default function CartPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="font-semibold text-[#212121] text-[13px] line-clamp-2 mb-2">{item.name}</h3>
-                          <p className="text-[17px] text-[#2874F0] font-bold">₹{item.price.toLocaleString()}</p>
+                          <p className="text-[17px] text-[#2874F0] font-bold">{item.price.toLocaleString()}</p>
                           
                           <div className="flex items-center justify-between mt-3">
                             <div className="flex items-center gap-3">
@@ -127,6 +144,51 @@ export default function CartPage() {
               </div>
             </div>
           ))}
+
+          {/* Coupon Section */}
+          <Card className="border-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Tag className="w-5 h-5 text-[#2874F0]" />
+                <h3 className="text-[15px] font-semibold text-[#212121]">Apply Coupon</h3>
+              </div>
+              
+              {!appliedCoupon ? (
+                <div className="flex gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Enter coupon code"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                    className="flex-1 h-[52px] rounded-2xl border-2 border-[#E0E0E0] text-[15px] uppercase"
+                  />
+                  <Button
+                    onClick={applyCoupon}
+                    disabled={!couponCode}
+                    variant="ghost"
+                    className="text-[#2874F0] font-semibold h-[52px] px-6"
+                  >
+                    Apply
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between bg-[#388E3C]/10 rounded-2xl p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#388E3C] rounded-xl flex items-center justify-center">
+                      <Check className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-[#388E3C] font-semibold text-[15px]">{appliedCoupon.code} applied!</p>
+                      <p className="text-[#878787] text-[13px]">You save {appliedCoupon.discount} on this order</p>
+                    </div>
+                  </div>
+                  <button onClick={removeCoupon} className="p-2 active:bg-black/5 rounded-xl">
+                    <X className="w-5 h-5 text-[#878787]" />
+                  </button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
 
@@ -137,16 +199,22 @@ export default function CartPage() {
             <div className="space-y-2 text-[13px]">
               <div className="flex justify-between text-[#878787]">
                 <span>Subtotal</span>
-                <span>₹{subtotal.toLocaleString()}</span>
+                <span>{subtotal.toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-[#878787]">
                 <span>Delivery Fee</span>
-                <span>₹{deliveryFee}</span>
+                <span>{deliveryFee}</span>
               </div>
+              {appliedCoupon && (
+                <div className="flex justify-between text-[#388E3C]">
+                  <span>Coupon Discount</span>
+                  <span>-{appliedCoupon.discount}</span>
+                </div>
+              )}
               <div className="h-px bg-[#E0E0E0] my-2" />
               <div className="flex justify-between font-bold text-[#212121] text-[15px]">
                 <span>Total</span>
-                <span className="text-[#2874F0]">₹{total.toLocaleString()}</span>
+                <span className="text-[#2874F0]">{total.toLocaleString()}</span>
               </div>
             </div>
           </CardContent>
