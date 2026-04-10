@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MobileShell } from "@/components/mobile-shell"
 import Link from "next/link"
-import { signInWithEmail, signUpWithEmail } from "@/lib/auth"
+import { signInWithEmail } from "@/lib/auth"
+import { supabase } from "@/lib/supabase"
 
 function AuthContent() {
   const searchParams = useSearchParams()
@@ -49,7 +50,7 @@ function AuthContent() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setError("")
     if (registerPassword !== registerConfirmPassword) {
       setError("Passwords do not match.")
       return
@@ -59,15 +60,57 @@ function AuthContent() {
       return
     }
     setLoading(true)
+
     try {
-      await signUpWithEmail(registerEmail, registerPassword, registerName, role)
-      if (role === "vendor") {
-        router.push("/vendor/register")
-      } else {
-        router.push("/home")
+      console.log("Attempting signup with:", {
+        email: registerEmail,
+        name: registerName,
+        role: role
+      })
+
+      const { data, error } = await supabase.auth.signUp({
+        email: registerEmail,
+        password: registerPassword,
+        options: {
+          data: {
+            name: registerName,
+            role: role
+          }
+        }
+      })
+
+      console.log("Signup response:", { data, error })
+
+      if (error) {
+        console.error("Signup error:", error)
+        setError(error.message)
+        return
+      }
+
+      if (data.user) {
+        console.log("User created:", data.user.id)
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .upsert({
+            id: data.user.id,
+            email: registerEmail,
+            name: registerName,
+            role: role
+          })
+
+        if (profileError) {
+          console.error("Profile error:", profileError)
+        }
+
+        if (role === "vendor") {
+          window.location.href = "/vendor/dashboard"
+        } else {
+          window.location.href = "/home"
+        }
       }
     } catch (err: any) {
-      setError(err.message || "Registration failed. Please try again.")
+      console.error("Caught error:", err)
+      setError(err.message || "Registration failed")
     } finally {
       setLoading(false)
     }
